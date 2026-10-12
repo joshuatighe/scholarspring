@@ -1,5 +1,5 @@
 import { ArrowRight, Heart } from 'lucide-react'
-import { shortDeadline } from '../lib/matching'
+import { formatAmount, formatShortDeadline } from '../lib/format'
 import type { Scholarship } from '../types'
 
 interface Props {
@@ -28,10 +28,10 @@ export function ScholarshipCard({ scholarship: s, saved, onToggleSave, onShowDet
       <p className="text-[.82rem] text-muted">{s.provider}</p>
       <div className="mt-auto flex gap-3.5 pt-5 text-[.76rem] text-[#62716d]">
         <div>
-          AWARD<strong className="mt-1 block text-[.9rem] text-ink">{s.amount}</strong>
+          AWARD<strong className="mt-1 block text-[.9rem] text-ink">{formatAmount(s.amount)}</strong>
         </div>
         <div>
-          DEADLINE<strong className="mt-1 block text-[.9rem] text-ink">{shortDeadline(s.deadline)}</strong>
+          DEADLINE<strong className="mt-1 block text-[.9rem] text-ink">{formatShortDeadline(s.deadline)}</strong>
         </div>
       </div>
       <button

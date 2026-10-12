@@ -1,4 +1,5 @@
 import { Heart } from 'lucide-react'
+import { formatAmount, formatDeadline } from '../lib/format'
 import type { Scholarship } from '../types'
 import { buttonClass } from './button'
 import { Modal } from './Modal'
@@ -24,8 +25,8 @@ export function DetailDialog({ scholarship: s, saved, onToggleSave, onClose }: P
           </div>
           <p className="leading-[1.65] text-[#53635f]">{s.description}</p>
           <div className="my-[22px] grid grid-cols-3 rounded-md bg-cream p-[15px]">
-            <Stat label="Award" value={s.amount} />
-            <Stat label="Deadline" value={s.deadline} />
+            <Stat label="Award" value={formatAmount(s.amount)} />
+            <Stat label="Deadline" value={formatDeadline(s.deadline)} />
             <Stat label="Minimum GPA" value={String(s.gpa)} />
           </div>
           <p className="leading-[1.65] text-[#53635f]">

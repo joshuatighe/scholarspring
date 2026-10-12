@@ -2,6 +2,7 @@ import { ArrowRight, Search } from 'lucide-react'
 import type { ReactNode } from 'react'
 import { EMPTY_FILTERS, type Filters } from '../lib/matching'
 import { FILTER_MAJORS, REGIONS } from '../lib/options'
+import type { LoadStatus } from '../hooks/useScholarships'
 import type { Scholarship } from '../types'
 import { buttonClass } from './button'
 import { SparkleMark } from './SparkleMark'
@@ -9,6 +10,8 @@ import { ScholarshipGrid } from './ScholarshipGrid'
 import { SectionHeading } from './SectionHeading'
 
 interface Props {
+  status: LoadStatus
+  onRetry: () => void
   results: Scholarship[]
   filters: Filters
   onFiltersChange: (filters: Filters) => void
@@ -19,7 +22,7 @@ interface Props {
   onShowDetail: (id: string) => void
 }
 
-export function SearchSection({ results, filters, onFiltersChange, showProfileTip, onCompleteProfile, ...grid }: Props) {
+export function SearchSection({ status, onRetry, results, filters, onFiltersChange, showProfileTip, onCompleteProfile, ...grid }: Props) {
   const set = (key: keyof Filters) => (event: { target: { value: string } }) =>
     onFiltersChange({ ...filters, [key]: event.target.value })
 
@@ -28,7 +31,13 @@ export function SearchSection({ results, filters, onFiltersChange, showProfileTi
       <SectionHeading
         eyebrow="Your opportunities"
         title="Find a scholarship that fits."
-        summary={`${results.length} ${results.length === 1 ? 'opportunity' : 'opportunities'} found`}
+        summary={
+          status === 'loading'
+            ? 'Loading scholarships…'
+            : status === 'error'
+              ? ''
+              : `${results.length} ${results.length === 1 ? 'opportunity' : 'opportunities'} found`
+        }
       />
 
       <div className="mb-[18px] grid grid-cols-[2fr_1fr_1fr_1fr] gap-3 rounded-lg bg-paper p-4 shadow-soft max-md:grid-cols-2 max-sm:grid-cols-1">
@@ -60,7 +69,7 @@ export function SearchSection({ results, filters, onFiltersChange, showProfileTi
           </select>
         </Field>
         <Field label="Your GPA">
-          <input type="number" min="0" max="4" step="0.1" placeholder="Any GPA" value={filters.gpa} onChange={set('gpa')} />
+          <input type="number" min="0" max="4" step="0.01" placeholder="Any GPA" value={filters.gpa} onChange={set('gpa')} />
         </Field>
       </div>
 
@@ -74,7 +83,21 @@ export function SearchSection({ results, filters, onFiltersChange, showProfileTi
         </div>
       )}
 
-      {results.length > 0 ? (
+      {status === 'loading' ? (
+        <div aria-busy className="grid grid-cols-3 gap-[18px] max-md:grid-cols-2 max-sm:grid-cols-1">
+          {[0, 1, 2].map((n) => (
+            <div key={n} className="min-h-[270px] animate-pulse rounded-lg border border-line bg-paper" />
+          ))}
+        </div>
+      ) : status === 'error' ? (
+        <div role="alert" className="px-[15px] py-[70px] text-center">
+          <h3 className="m-2.5 font-display text-[1.7rem]">Couldn’t load scholarships</h3>
+          <p className="text-muted">Check your connection and try again.</p>
+          <button type="button" onClick={onRetry} className={buttonClass('outline')}>
+            Try again
+          </button>
+        </div>
+      ) : results.length > 0 ? (
         <ScholarshipGrid scholarships={results} {...grid} />
       ) : (
         <div className="px-[15px] py-[70px] text-center">

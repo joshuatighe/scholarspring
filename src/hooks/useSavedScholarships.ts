@@ -8,7 +8,18 @@ export function useSavedScholarships(user: Profile | null) {
   const username = user?.username
 
   useEffect(() => {
-    if (username) void getSavedIds().then(setSavedIds)
+    if (!username) return
+    let current = true
+    getSavedIds()
+      .then((ids) => {
+        if (current) setSavedIds(ids)
+      })
+      .catch(() => {
+        if (current) setSavedIds([])
+      })
+    return () => {
+      current = false
+    }
   }, [username])
 
   return {
