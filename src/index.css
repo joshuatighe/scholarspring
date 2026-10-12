@@ -1,0 +1,66 @@
+@import 'tailwindcss';
+
+@theme {
+  --color-ink: #193631;
+  --color-muted: #6a7774;
+  --color-cream: #f7f5ef;
+  --color-paper: #fffdf8;
+  --color-mint: #d8ebe1;
+  --color-sage: #8fb9a5;
+  --color-coral: #ec795f;
+  --color-yellow: #f6d77b;
+  --color-line: #dfe6df;
+
+  --font-sans: 'DM Sans', sans-serif;
+  --font-display: 'Playfair Display', serif;
+
+  --shadow-soft: 0 16px 38px rgba(25, 54, 49, 0.08);
+
+  /* The original layout's breakpoints: phones at 500px and below, tablets at 800px and below. */
+  --breakpoint-sm: 501px;
+  --breakpoint-md: 801px;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    line-height: normal;
+  }
+
+  body {
+    @apply bg-cream font-sans text-ink;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-weight: 700;
+  }
+
+  /* Tailwind's reset removes these browser defaults, which the original layout relies on. */
+  p {
+    margin-block: 1em;
+  }
+
+  dialog {
+    margin: auto;
+  }
+
+  button,
+  a {
+    cursor: pointer;
+  }
+
+  input,
+  select {
+    @apply rounded-[5px] border border-line bg-white p-3 text-ink outline-sage;
+  }
+}
+
+@utility section-shell {
+  @apply mx-auto max-w-[1180px] px-7 max-sm:px-[18px];
+}
+
+@utility eyebrow {
+  @apply mt-0 mb-3.5 text-[.7rem] font-bold tracking-[.15em] text-coral uppercase;
+}

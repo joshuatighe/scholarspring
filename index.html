@@ -3,66 +3,15 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Search scholarships matched to your goals, background, and big plans." />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <title>ScholarSpring | Find funding for what’s next</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <div id="toast" class="toast" role="status"></div>
-    <header class="site-header">
-      <a class="brand" href="#home" aria-label="ScholarSpring home"><span class="brand-mark">✦</span> ScholarSpring</a>
-      <nav id="main-nav" class="main-nav" aria-label="Main navigation">
-        <a href="#search">Browse scholarships</a>
-        <a href="#saved">Saved <span id="saved-count" class="nav-count">0</span></a>
-        <button id="auth-button" class="button button-small button-outline">Sign in</button>
-      </nav>
-      <button id="menu-toggle" class="menu-toggle" aria-label="Toggle menu">☰</button>
-    </header>
-
-    <main>
-      <section id="home" class="hero section-shell">
-        <div class="hero-copy">
-          <p class="eyebrow">Make your next chapter possible</p>
-          <h1>Find funding for the future you’re building.</h1>
-          <p class="hero-text">Search a thoughtful collection of scholarships matched to your goals, background, and big plans.</p>
-          <div class="hero-actions"><a class="button button-primary" href="#search">Explore scholarships <span>→</span></a><button id="hero-signup" class="button button-quiet">Create a free profile</button></div>
-          <div class="trust-row"><span>✦</span> Curated opportunities <span>·</span> Built for students</div>
-        </div>
-        <div class="hero-art" aria-hidden="true">
-          <div class="sun"></div><div class="hero-card card-one"><span>AWARD</span><strong>$10,000</strong><small>Women in STEM</small></div>
-          <div class="hero-card card-two"><span>DEADLINE</span><strong>Apr 30</strong><small>Keep going, Maya.</small></div>
-          <div class="paper-plane">✈</div><div class="sparkle sparkle-one">✦</div><div class="sparkle sparkle-two">✦</div>
-        </div>
-      </section>
-
-      <section id="search" class="search-section section-shell">
-        <div class="section-heading"><div><p class="eyebrow">Your opportunities</p><h2>Find a scholarship that fits.</h2></div><p id="result-summary" class="result-summary"></p></div>
-        <div class="search-panel">
-          <label class="search-input"><span>⌕</span><input id="search-input" type="search" placeholder="Search by scholarship name or keyword" /></label>
-          <label><span class="label-text">Major</span><select id="major-filter"><option value="">All majors</option><option>Computer Science</option><option>Education</option><option>Environmental Science</option><option>Business</option><option>Arts & Design</option><option>Any major</option></select></label>
-          <label><span class="label-text">Region</span><select id="region-filter"><option value="">Any region</option><option>National</option><option>Midwest</option><option>West</option><option>South</option><option>Northeast</option></select></label>
-          <label><span class="label-text">Your GPA</span><input id="gpa-filter" type="number" min="0" max="4" step="0.1" placeholder="Any GPA" /></label>
-        </div>
-        <div id="profile-tip" class="profile-tip hidden"><span>✦</span><p>Tell us about yourself and we’ll personalize these results.</p><button id="tip-profile" class="text-button">Complete profile →</button></div>
-        <div id="scholarship-grid" class="scholarship-grid"></div>
-        <div id="empty-state" class="empty-state hidden"><div class="empty-icon">⌕</div><h3>No scholarships found</h3><p>Try changing your search or filters to see more opportunities.</p><button id="clear-filters" class="button button-outline">Clear filters</button></div>
-      </section>
-
-      <section id="saved" class="saved-section section-shell">
-        <div class="section-heading"><div><p class="eyebrow">Keep them close</p><h2>Your saved scholarships.</h2></div><p id="saved-summary" class="result-summary"></p></div>
-        <div id="saved-grid" class="scholarship-grid"></div>
-        <div id="saved-empty" class="saved-empty"><span>♡</span><p>Save scholarships while you browse and they’ll appear here.</p><a href="#search" class="text-button">Browse opportunities →</a></div>
-      </section>
-
-      <section class="cta-section section-shell"><div><p class="eyebrow">A little help goes a long way</p><h2>Ready to make a plan?</h2><p>Build your student profile once and let ScholarSpring surface opportunities that make sense for you.</p></div><button id="cta-signup" class="button button-light">Build my profile →</button></section>
-    </main>
-
-    <footer class="site-footer section-shell"><div class="brand"><span class="brand-mark">✦</span> ScholarSpring</div><p>Tools for the students shaping what’s next.</p><span>© 2026 ScholarSpring demo</span></footer>
-
-    <dialog id="auth-dialog" class="modal"><button class="modal-close" data-close="auth-dialog">×</button><div class="modal-header"><span class="modal-icon">✦</span><p class="eyebrow">Welcome to ScholarSpring</p><h2 id="auth-title">Create your profile</h2><p id="auth-subtitle">Tell us a little about yourself to get personalized matches.</p></div><form id="auth-form"><label>Username<input id="username" required autocomplete="username" placeholder="e.g. maya.chen" /></label><label>Password<input id="password" required minlength="6" type="password" autocomplete="new-password" placeholder="At least 6 characters" /></label><div class="form-row" data-profile-field><label>High-school GPA<input id="gpa" required min="0" max="4" step="0.1" type="number" placeholder="3.7" /></label><label>Preferred region<select id="region"><option>National</option><option>Midwest</option><option>West</option><option>South</option><option>Northeast</option></select></label></div><label data-profile-field>Intended major<select id="major"><option>Computer Science</option><option>Education</option><option>Environmental Science</option><option>Business</option><option>Arts & Design</option><option>Undecided</option></select></label><button id="auth-submit" class="button button-primary button-full" type="submit">Save my profile →</button></form><button id="switch-auth" class="switch-auth">Already have a profile? Sign in</button></dialog>
-    <dialog id="detail-dialog" class="modal detail-modal"><button class="modal-close" data-close="detail-dialog">×</button><div id="detail-content"></div></dialog>
-    <script src="app.js"></script>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
