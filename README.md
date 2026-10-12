@@ -27,3 +27,4 @@ Open <http://localhost:8000> in a browser. A local server is recommended because
 - `app.js` — seeded data, filtering, profile flow, details, and localStorage persistence.
 - `HW05-reflection.md` — requirements, interview findings, vibe-coding reflection, workflow, and cost estimates.
 - `docs/CURRENT_ARCHITECTURE.md` — architecture of the current system, with diagrams.
+- `docs/TARGET_ARCHITECTURE.md` — planned target architecture and rollout plan.
