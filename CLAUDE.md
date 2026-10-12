@@ -20,7 +20,7 @@ A student "qualifies" on GPA when `scholarship.min_gpa <= student.gpa`. Scholars
 
 ## Current state
 
-The roadmap is at **step 3 of 6**. The app is a Vite + React + TypeScript single page, styled with Tailwind CSS v4 and Lucide icons. It looks and behaves like the original vanilla version.
+The roadmap is at **step 4 of 6**. Production: https://scholarspring-snowy.vercel.app (Vercel, deploys from `main`). The app is a Vite + React + TypeScript single page, styled with Tailwind CSS v4 and Lucide icons. It looks and behaves like the original vanilla version.
 
 ### Commands
 
@@ -33,7 +33,7 @@ The roadmap is at **step 3 of 6**. The app is a Vite + React + TypeScript single
 | `pnpm typecheck` | `tsc -b` |
 | `pnpm test` | Vitest unit tests |
 
-Before opening a PR, run `pnpm lint`, `pnpm typecheck`, `pnpm test` and `pnpm build`. All four must pass with no oxlint warnings. Fix the code rather than disabling a rule; if a rule truly doesn't fit, change `.oxlintrc.json` and say why in the PR.
+Before opening a PR, run `pnpm lint`, `pnpm typecheck`, `pnpm test` and `pnpm build`. All four must pass with no oxlint warnings; CI (`.github/workflows/ci.yml`) runs the same checks with `--deny-warnings` on every PR and push to `main`. Fix the code rather than disabling a rule; if a rule truly doesn't fit, change `.oxlintrc.json` and say why in the PR.
 
 ### How the app fits together
 
@@ -65,7 +65,7 @@ When a step merges, update the roadmap table and the `roadmap-step_N_of_6` badge
 
 - **Frontend:** Vite, React, TypeScript (strict), Tailwind CSS, Lucide icons. pnpm is the only package manager; commit `pnpm-lock.yaml` and never add an npm or yarn lockfile. Lint with oxlint only.
 - **Backend:** Supabase only. The browser talks to Supabase directly; there is no custom server. Row Level Security on every table is what keeps data private, not the UI.
-- **Hosting:** Vercel, with preview deployments for every PR.
+- **Hosting:** Vercel, with preview deployments for every PR. `vercel.json` pins install (`pnpm install --frozen-lockfile`), build (`pnpm build`) and output (`dist`), caches hashed `/assets/*` for a year, and sets `nosniff` and `Referrer-Policy` headers. The app is a single page with hash links, so no SPA rewrite is needed; add one if client-side routes are introduced.
 
 Layout (since step 3):
 

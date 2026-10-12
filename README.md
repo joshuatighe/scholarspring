@@ -13,7 +13,10 @@ A scholarship finder for students. Search and filter awards, build a profile onc
 and keep a shortlist of the scholarships worth applying to.
 
 <p>
-  <a href="#roadmap"><picture><source media="(prefers-color-scheme: dark)" srcset="https://img.shields.io/badge/roadmap-step_3_of_6-24413b?style=flat-square&labelColor=3b5a53"><img alt="Roadmap: step 3 of 6" src="https://img.shields.io/badge/roadmap-step_3_of_6-ec795f?style=flat-square&labelColor=193631"></picture></a>&nbsp;
+  <a href="https://scholarspring-snowy.vercel.app"><picture><source media="(prefers-color-scheme: dark)" srcset="https://img.shields.io/badge/live_demo-scholarspring--snowy.vercel.app-ec795f?style=flat-square&logo=vercel&logoColor=white&labelColor=3b5a53"><img alt="Live demo" src="https://img.shields.io/badge/live_demo-scholarspring--snowy.vercel.app-ec795f?style=flat-square&logo=vercel&logoColor=white&labelColor=193631"></picture></a>&nbsp;
+  <a href="#roadmap"><picture><source media="(prefers-color-scheme: dark)" srcset="https://img.shields.io/badge/roadmap-step_4_of_6-24413b?style=flat-square&labelColor=3b5a53"><img alt="Roadmap: step 4 of 6" src="https://img.shields.io/badge/roadmap-step_4_of_6-ec795f?style=flat-square&labelColor=193631"></picture></a>&nbsp;
+  <a href="https://github.com/joshuatighe/scholarspring/deployments"><picture><source media="(prefers-color-scheme: dark)" srcset="https://img.shields.io/github/deployments/joshuatighe/scholarspring/Production?style=flat-square&logo=vercel&label=production&logoColor=white&labelColor=3b5a53"><img alt="Production deployment" src="https://img.shields.io/github/deployments/joshuatighe/scholarspring/Production?style=flat-square&logo=vercel&label=production&logoColor=white&labelColor=193631"></picture></a>&nbsp;
+  <a href="https://github.com/joshuatighe/scholarspring/actions/workflows/ci.yml"><picture><source media="(prefers-color-scheme: dark)" srcset="https://img.shields.io/github/actions/workflow/status/joshuatighe/scholarspring/ci.yml?branch=main&style=flat-square&logo=githubactions&label=ci&logoColor=white&labelColor=3b5a53"><img alt="CI" src="https://img.shields.io/github/actions/workflow/status/joshuatighe/scholarspring/ci.yml?branch=main&style=flat-square&logo=githubactions&label=ci&logoColor=white&labelColor=193631"></picture></a>&nbsp;
   <a href="https://github.com/joshuatighe/scholarspring/commits/main"><picture><source media="(prefers-color-scheme: dark)" srcset="https://img.shields.io/github/last-commit/joshuatighe/scholarspring/main?style=flat-square&logo=github&label=last%20commit&color=24413b&logoColor=white&labelColor=3b5a53"><img alt="Last commit" src="https://img.shields.io/github/last-commit/joshuatighe/scholarspring/main?style=flat-square&logo=github&label=last%20commit&color=d8ebe1&logoColor=white&labelColor=193631"></picture></a>&nbsp;
   <a href="https://github.com/joshuatighe/scholarspring/pulls?q=is%3Apr+is%3Amerged"><picture><source media="(prefers-color-scheme: dark)" srcset="https://img.shields.io/github/issues-pr-closed/joshuatighe/scholarspring?style=flat-square&logo=github&label=pull%20requests&color=24413b&logoColor=white&labelColor=3b5a53"><img alt="Pull requests" src="https://img.shields.io/github/issues-pr-closed/joshuatighe/scholarspring?style=flat-square&logo=github&label=pull%20requests&color=d8ebe1&logoColor=white&labelColor=193631"></picture></a>
 </p>
@@ -29,7 +32,7 @@ and keep a shortlist of the scholarships worth applying to.
   <a href="https://pnpm.io/motivation"><picture><source media="(prefers-color-scheme: dark)" srcset="https://img.shields.io/badge/pnpm-10-24413b?style=flat-square&logo=pnpm&logoColor=white&labelColor=3b5a53"><img alt="pnpm 10" src="https://img.shields.io/badge/pnpm-10-d8ebe1?style=flat-square&logo=pnpm&logoColor=white&labelColor=193631"></picture></a>
 </p>
 
-<sub>[Features](#features) · [Getting started](#getting-started) · [Scripts](#scripts) · [Roadmap](#roadmap) · [Architecture](#architecture) · [Stack](#stack)</sub>
+<sub>[Live demo](https://scholarspring-snowy.vercel.app) · [Features](#features) · [Getting started](#getting-started) · [Scripts](#scripts) · [Deploy](#deploy) · [Roadmap](#roadmap) · [Architecture](#architecture) · [Stack](#stack)</sub>
 
 <br><br>
 
@@ -67,6 +70,7 @@ pnpm dev
 ```
 
 Open [localhost:5173](http://localhost:5173). There are no environment variables or accounts to set up yet.
+Or skip the setup and try the [live demo](https://scholarspring-snowy.vercel.app).
 
 <details>
 <summary><strong>Try it out</strong></summary>
@@ -100,6 +104,22 @@ The bugs found in the [Round 1 architecture review](docs/CURRENT_ARCHITECTURE.md
 | `pnpm typecheck` | Typecheck only |
 | `pnpm test` / `test:watch` | Run the Vitest unit tests (once / watch) |
 
+Every pull request and push to `main` runs lint, typecheck, tests and build in [GitHub Actions](.github/workflows/ci.yml).
+
+## Deploy
+
+1. Import the repo into [Vercel](https://vercel.com/new). The framework preset is **Vite**, and pnpm is detected from
+   `pnpm-lock.yaml`. `vercel.json` pins the install, build and output settings.
+2. Deploy. There are no environment variables yet; Supabase keys arrive in step 5.
+
+Production: **[scholarspring-snowy.vercel.app](https://scholarspring-snowy.vercel.app)**
+
+Every pull request gets its own preview deployment, and merges to `main` go to production.
+
+> [!TIP]
+> To have Vercel use the exact pnpm version pinned in `package.json`, add the environment variable
+> `ENABLE_EXPERIMENTAL_COREPACK=1` to the Vercel project.
+
 ## Roadmap
 
 Each step is its own branch and pull request, merged before the next one starts. The full plan is in [TARGET_ARCHITECTURE.md](docs/TARGET_ARCHITECTURE.md#rollout-plan).
@@ -109,8 +129,8 @@ Each step is its own branch and pull request, merged before the next one starts.
 | 0 | Current and target architecture docs | `docs/current-architecture`, `docs/target-architecture` | ✅ Done |
 | 1 | New README and `CLAUDE.md` | `docs/readme` | ✅ Done |
 | 2 | Fix the Round 1 bugs in the existing code | `fix/round-1-bugs` | ✅ Done |
-| 3 | Move to Vite, React, TypeScript, Tailwind, pnpm and Lucide | `chore/vite-react-ts` | 🚧 In progress |
-| 4 | Deploy to Vercel | `chore/vercel-deploy` | Planned |
+| 3 | Move to Vite, React, TypeScript, Tailwind, pnpm and Lucide | `chore/vite-react-ts` | ✅ Done |
+| 4 | Deploy to Vercel | `chore/vercel-deploy` | 🚧 In progress |
 | 5 | Move data and accounts to Supabase | `feat/supabase` | Planned |
 | 6 | UI refresh | `feat/ui-refresh` | Planned |
 
@@ -129,8 +149,8 @@ Each step is its own branch and pull request, merged before the next one starts.
 | **Frontend** | Vite · React · TypeScript (strict) · Tailwind CSS v4 · Lucide icons | Same, with the refreshed UI |
 | **Type** | Playfair Display · DM Sans | Kept, refined in the UI refresh |
 | **Data** | Built-in list + `localStorage`, all through `src/lib/data.ts` | Supabase: Postgres, Auth, Row Level Security |
-| **Tooling** | pnpm · oxlint · Vitest | Same |
-| **Hosting** | Any static host (`pnpm build` → `dist/`) | Vercel |
+| **Tooling** | pnpm · oxlint · Vitest · GitHub Actions | Same |
+| **Hosting** | Vercel, with a preview for every PR | Same |
 
 ## Project structure
 
@@ -150,6 +170,8 @@ src/
 docs/               current and target architecture
 .github/assets/     logo and screenshot used by this README
 CLAUDE.md           project guide for contributors and AI assistants
+vercel.json         Vercel build settings and headers
+.github/workflows/  CI: lint, typecheck, test, build
 ```
 
 ---
