@@ -1,6 +1,6 @@
 import type { Scholarship } from '../types'
 
-/** The six demo scholarships as the migrations leave them (seed + high-school wording), for tests. */
+/** The original six demo scholarships as the migrations leave them (seed + high-school wording), for tests. The seven added later aren't needed by any test. */
 export const SCHOLARSHIPS: Scholarship[] = [
   {id:'stem-forward',name:'STEM Forward Scholarship',provider:'Bright Futures Foundation',category:'STEM & Innovation',amount:10000,deadline:'2026-04-30',gpa:3.2,majors:['Computer Science','Environmental Science'],regions:['National'],description:'For high-school seniors who love science and technology and plan to study it in college.',eligibility:'Graduating high-school seniors planning to major in computer science or environmental science.'},
   {id:'green-future',name:'Green Future Scholarship',provider:'Earthwell Initiative',category:'Environment',amount:7500,deadline:'2026-05-15',gpa:3.0,majors:['Environmental Science','Any major'],regions:['West','National'],description:'For high-school seniors who have led environmental projects at school or in their community.',eligibility:'Graduating high-school seniors with environmental service or climate-action experience. Any intended major.'},

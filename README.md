@@ -82,8 +82,8 @@ cp .env.example .env.local   # then fill in your Supabase URL and anon key
 ### 3. Set up the database
 
 In the Supabase dashboard, open **SQL Editor** and run each file in [`supabase/migrations/`](supabase/migrations) in
-order. The first creates the tables, security rules and sign-up trigger; the rest add the six demo scholarships,
-move their deadlines into 2027 and word them for high-school seniors.
+order. The first creates the tables, security rules and sign-up trigger; the rest add the demo scholarships (six,
+moved into 2027 and worded for high-school seniors, then seven more).
 
 <details>
 <summary><strong>Or use the Supabase CLI</strong></summary>
@@ -128,7 +128,7 @@ Open [localhost:5173](http://localhost:5173), or skip the setup and try the [liv
 
 The problems found in the [Round 1 architecture review](docs/CURRENT_ARCHITECTURE.md#problems-we-noticed) are fixed.
 
-- The six demo scholarships are the only data. Add or update scholarships in the Supabase dashboard
+- The 13 demo scholarships (fictional names and providers) are the only data. Add or update scholarships in the Supabase dashboard
   (**Table Editor → scholarships**) or with a new migration.
 - Accounts from the old browser-only version aren't carried over; students sign up again. The app deletes that old
   data, which included plain-text passwords, from the browser on first load.
