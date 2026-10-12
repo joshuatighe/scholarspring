@@ -7,10 +7,10 @@
 
 <br>
 
-**Find funding for the future you're building.**
+**Find the scholarships that get you to college.**
 
-A scholarship finder for students. Search and filter awards, build a profile once,<br>
-and keep a shortlist of the scholarships worth applying to.
+A scholarship finder for high-school students applying to college. Search and filter awards,<br>
+see which ones you qualify for, and keep a shortlist of the ones worth applying to.
 
 <p>
   <a href="https://scholarspring-snowy.vercel.app"><picture><source media="(prefers-color-scheme: dark)" srcset="https://img.shields.io/badge/live_demo-scholarspring--snowy.vercel.app-ec795f?style=flat-square&logo=vercel&logoColor=white&labelColor=3b5a53"><img alt="Live demo" src="https://img.shields.io/badge/live_demo-scholarspring--snowy.vercel.app-ec795f?style=flat-square&logo=vercel&logoColor=white&labelColor=193631"></picture></a>&nbsp;
@@ -40,7 +40,7 @@ and keep a shortlist of the scholarships worth applying to.
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset=".github/assets/screenshot-dark.png">
-  <img src=".github/assets/screenshot-light.png" alt="ScholarSpring home page: a forest-green hero reading “Funding for the future you’re building.” next to the total of open awards, above cards for scholarships closing soon" width="820">
+  <img src=".github/assets/screenshot-light.png" alt="ScholarSpring home page: a forest-green hero reading “Find the scholarships that get you to college.” next to the total of open awards, above cards for scholarships closing soon" width="820">
 </picture>
 
 </div>
@@ -82,8 +82,8 @@ cp .env.example .env.local   # then fill in your Supabase URL and anon key
 ### 3. Set up the database
 
 In the Supabase dashboard, open **SQL Editor** and run each file in [`supabase/migrations/`](supabase/migrations) in
-order. The first creates the tables, security rules and sign-up trigger; the next two add the six demo scholarships
-and move their deadlines into 2027.
+order. The first creates the tables, security rules and sign-up trigger; the rest add the six demo scholarships,
+move their deadlines into 2027 and word them for high-school seniors.
 
 <details>
 <summary><strong>Or use the Supabase CLI</strong></summary>

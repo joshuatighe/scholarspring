@@ -17,7 +17,7 @@ export function Footer() {
             Profile
           </Link>
         </nav>
-        <span>© 2026 ScholarSpring · Tools for the students shaping what’s next.</span>
+        <span>© 2026 ScholarSpring · College scholarships for high-school students.</span>
       </div>
     </footer>
   )

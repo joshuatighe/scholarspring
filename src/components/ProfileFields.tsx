@@ -19,10 +19,12 @@ export function ProfileFields({ values, onChange }: { values: ProfileFieldValues
           <input required type="number" min="0" max="4" step="0.01" placeholder="3.7" value={values.gpa} onChange={set('gpa')} />
         </label>
         <label className={fieldLabel}>
-          Preferred region
+          Where you want to study
           <select value={values.region} onChange={set('region')}>
             {REGIONS.map((region) => (
-              <option key={region}>{region}</option>
+              <option key={region} value={region}>
+                {region === 'National' ? 'Anywhere in the US' : region}
+              </option>
             ))}
           </select>
         </label>
