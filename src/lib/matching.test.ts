@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import { SCHOLARSHIPS } from './fixtures'
-import { EMPTY_FILTERS, filtersFromProfile, matchesScholarship, type Filters } from './matching'
+import { EMPTY_FILTERS, filtersFromProfile, matchesScholarship, profileMatch, type Filters } from './matching'
 
 const ids = (filters: Partial<Filters>) =>
   SCHOLARSHIPS.filter((s) => matchesScholarship(s, { ...EMPTY_FILTERS, ...filters })).map((s) => s.id)
@@ -57,5 +57,29 @@ describe('filtersFromProfile', () => {
       region: '',
       gpa: '2.6',
     })
+  })
+})
+
+const byId = (id: string) => {
+  const scholarship = SCHOLARSHIPS.find((s) => s.id === id)
+  if (!scholarship) throw new Error(`No fixture ${id}`)
+  return scholarship
+}
+
+describe('profileMatch', () => {
+  const maya = { username: 'maya', email: 'maya@example.com', gpa: 3.3, major: 'Business', region: 'Midwest' }
+
+  it('matches when GPA, major and region all fit', () => {
+    expect(profileMatch(byId('first-gen'), maya)).toEqual({ gpa: true, major: true, region: true, all: true })
+  })
+
+  it('reports each criterion that does not fit', () => {
+    expect(profileMatch(byId('women-build'), maya)).toEqual({ gpa: false, major: true, region: true, all: false })
+    expect(profileMatch(byId('future-teachers'), maya)).toEqual({ gpa: true, major: false, region: true, all: false })
+  })
+
+  it('agrees with the profile filters', () => {
+    const filters = { ...EMPTY_FILTERS, ...filtersFromProfile(maya) }
+    for (const s of SCHOLARSHIPS) expect(profileMatch(s, maya).all).toBe(matchesScholarship(s, filters))
   })
 })
