@@ -13,19 +13,23 @@ A scholarship finder for students. Search and filter awards, build a profile onc
 and keep a shortlist of the scholarships worth applying to.
 
 <p>
-  <a href="#roadmap"><picture><source media="(prefers-color-scheme: dark)" srcset="https://img.shields.io/badge/roadmap-step_2_of_6-24413b?style=flat-square&labelColor=3b5a53"><img alt="Roadmap: step 2 of 6" src="https://img.shields.io/badge/roadmap-step_2_of_6-ec795f?style=flat-square&labelColor=193631"></picture></a>&nbsp;
+  <a href="#roadmap"><picture><source media="(prefers-color-scheme: dark)" srcset="https://img.shields.io/badge/roadmap-step_3_of_6-24413b?style=flat-square&labelColor=3b5a53"><img alt="Roadmap: step 3 of 6" src="https://img.shields.io/badge/roadmap-step_3_of_6-ec795f?style=flat-square&labelColor=193631"></picture></a>&nbsp;
   <a href="https://github.com/joshuatighe/scholarspring/commits/main"><picture><source media="(prefers-color-scheme: dark)" srcset="https://img.shields.io/github/last-commit/joshuatighe/scholarspring/main?style=flat-square&logo=github&label=last%20commit&color=24413b&logoColor=white&labelColor=3b5a53"><img alt="Last commit" src="https://img.shields.io/github/last-commit/joshuatighe/scholarspring/main?style=flat-square&logo=github&label=last%20commit&color=d8ebe1&logoColor=white&labelColor=193631"></picture></a>&nbsp;
   <a href="https://github.com/joshuatighe/scholarspring/pulls?q=is%3Apr+is%3Amerged"><picture><source media="(prefers-color-scheme: dark)" srcset="https://img.shields.io/github/issues-pr-closed/joshuatighe/scholarspring?style=flat-square&logo=github&label=pull%20requests&color=24413b&logoColor=white&labelColor=3b5a53"><img alt="Pull requests" src="https://img.shields.io/github/issues-pr-closed/joshuatighe/scholarspring?style=flat-square&logo=github&label=pull%20requests&color=d8ebe1&logoColor=white&labelColor=193631"></picture></a>
 </p>
 
 <p>
-  <a href="https://developer.mozilla.org/en-US/docs/Web/HTML"><picture><source media="(prefers-color-scheme: dark)" srcset="https://img.shields.io/badge/HTML-5-24413b?style=flat-square&logo=html5&logoColor=white&labelColor=3b5a53"><img alt="HTML 5" src="https://img.shields.io/badge/HTML-5-d8ebe1?style=flat-square&logo=html5&logoColor=white&labelColor=193631"></picture></a>&nbsp;
-  <a href="https://developer.mozilla.org/en-US/docs/Web/CSS"><picture><source media="(prefers-color-scheme: dark)" srcset="https://img.shields.io/badge/CSS-3-24413b?style=flat-square&logo=css&logoColor=white&labelColor=3b5a53"><img alt="CSS 3" src="https://img.shields.io/badge/CSS-3-d8ebe1?style=flat-square&logo=css&logoColor=white&labelColor=193631"></picture></a>&nbsp;
-  <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript"><picture><source media="(prefers-color-scheme: dark)" srcset="https://img.shields.io/badge/JavaScript-ES2020-24413b?style=flat-square&logo=javascript&logoColor=white&labelColor=3b5a53"><img alt="JavaScript ES2020" src="https://img.shields.io/badge/JavaScript-ES2020-d8ebe1?style=flat-square&logo=javascript&logoColor=white&labelColor=193631"></picture></a>&nbsp;
-  <a href="#getting-started"><picture><source media="(prefers-color-scheme: dark)" srcset="https://img.shields.io/badge/build_step-none-24413b?style=flat-square&labelColor=3b5a53"><img alt="No build step" src="https://img.shields.io/badge/build_step-none-d8ebe1?style=flat-square&labelColor=193631"></picture></a>
+  <a href="https://react.dev"><picture><source media="(prefers-color-scheme: dark)" srcset="https://img.shields.io/badge/React-19-24413b?style=flat-square&logo=react&logoColor=white&labelColor=3b5a53"><img alt="React 19" src="https://img.shields.io/badge/React-19-d8ebe1?style=flat-square&logo=react&logoColor=white&labelColor=193631"></picture></a>&nbsp;
+  <a href="https://www.typescriptlang.org/docs/"><picture><source media="(prefers-color-scheme: dark)" srcset="https://img.shields.io/badge/TypeScript-7-24413b?style=flat-square&logo=typescript&logoColor=white&labelColor=3b5a53"><img alt="TypeScript 7" src="https://img.shields.io/badge/TypeScript-7-d8ebe1?style=flat-square&logo=typescript&logoColor=white&labelColor=193631"></picture></a>&nbsp;
+  <a href="https://vite.dev/guide/"><picture><source media="(prefers-color-scheme: dark)" srcset="https://img.shields.io/badge/Vite-8-24413b?style=flat-square&logo=vite&logoColor=white&labelColor=3b5a53"><img alt="Vite 8" src="https://img.shields.io/badge/Vite-8-d8ebe1?style=flat-square&logo=vite&logoColor=white&labelColor=193631"></picture></a>&nbsp;
+  <a href="https://tailwindcss.com/docs"><picture><source media="(prefers-color-scheme: dark)" srcset="https://img.shields.io/badge/Tailwind_CSS-4-24413b?style=flat-square&logo=tailwindcss&logoColor=white&labelColor=3b5a53"><img alt="Tailwind CSS 4" src="https://img.shields.io/badge/Tailwind_CSS-4-d8ebe1?style=flat-square&logo=tailwindcss&logoColor=white&labelColor=193631"></picture></a>&nbsp;
+  <a href="https://lucide.dev"><picture><source media="(prefers-color-scheme: dark)" srcset="https://img.shields.io/badge/Lucide-icons-24413b?style=flat-square&logo=lucide&logoColor=white&labelColor=3b5a53"><img alt="Lucide icons" src="https://img.shields.io/badge/Lucide-icons-d8ebe1?style=flat-square&logo=lucide&logoColor=white&labelColor=193631"></picture></a>&nbsp;
+  <a href="https://oxc.rs/docs/guide/usage/linter"><picture><source media="(prefers-color-scheme: dark)" srcset="https://img.shields.io/badge/oxlint-1-24413b?style=flat-square&logo=oxc&logoColor=white&labelColor=3b5a53"><img alt="oxlint 1" src="https://img.shields.io/badge/oxlint-1-d8ebe1?style=flat-square&logo=oxc&logoColor=white&labelColor=193631"></picture></a>&nbsp;
+  <a href="https://vitest.dev"><picture><source media="(prefers-color-scheme: dark)" srcset="https://img.shields.io/badge/Vitest-5-24413b?style=flat-square&logo=vitest&logoColor=white&labelColor=3b5a53"><img alt="Vitest 5" src="https://img.shields.io/badge/Vitest-5-d8ebe1?style=flat-square&logo=vitest&logoColor=white&labelColor=193631"></picture></a>&nbsp;
+  <a href="https://pnpm.io/motivation"><picture><source media="(prefers-color-scheme: dark)" srcset="https://img.shields.io/badge/pnpm-10-24413b?style=flat-square&logo=pnpm&logoColor=white&labelColor=3b5a53"><img alt="pnpm 10" src="https://img.shields.io/badge/pnpm-10-d8ebe1?style=flat-square&logo=pnpm&logoColor=white&labelColor=193631"></picture></a>
 </p>
 
-<sub>[Features](#features) · [Getting started](#getting-started) · [Roadmap](#roadmap) · [Architecture](#architecture) · [Stack](#stack)</sub>
+<sub>[Features](#features) · [Getting started](#getting-started) · [Scripts](#scripts) · [Roadmap](#roadmap) · [Architecture](#architecture) · [Stack](#stack)</sub>
 
 <br><br>
 
@@ -50,13 +54,19 @@ and keep a shortlist of the scholarships worth applying to.
 
 ## Getting started
 
-There is nothing to install. From the repo root, start any static file server:
+### 1. Prerequisites
+- Node.js 20.19+ or 22.12+, and [pnpm](https://pnpm.io) 10 (`corepack enable` picks up the pinned version)
+
+### 2. Install and run
 
 ```bash
-python3 -m http.server 8000
+git clone https://github.com/joshuatighe/scholarspring.git
+cd scholarspring
+pnpm install
+pnpm dev
 ```
 
-Open [localhost:8000](http://localhost:8000).
+Open [localhost:5173](http://localhost:5173). There are no environment variables or accounts to set up yet.
 
 <details>
 <summary><strong>Try it out</strong></summary>
@@ -77,7 +87,18 @@ Open [localhost:8000](http://localhost:8000).
 The bugs found in the [Round 1 architecture review](docs/CURRENT_ARCHITECTURE.md#problems-we-noticed) are fixed. What remains is part of the demo design and changes with the stack:
 
 - Accounts and saved lists live only in this browser, and passwords are stored there as plain text. Both go away with Supabase in step 5.
-- Scholarships are built into the code, so adding one means editing `app.js`. Also fixed in step 5.
+- Scholarships are built into the code, so adding one means editing `src/lib/seed.ts`. Also fixed in step 5.
+
+## Scripts
+
+| Command | What it does |
+| --- | --- |
+| `pnpm dev` | Start the dev server |
+| `pnpm build` | Typecheck and build for production into `dist/` |
+| `pnpm preview` | Serve the production build |
+| `pnpm lint` | Lint with oxlint |
+| `pnpm typecheck` | Typecheck only |
+| `pnpm test` / `test:watch` | Run the Vitest unit tests (once / watch) |
 
 ## Roadmap
 
@@ -87,8 +108,8 @@ Each step is its own branch and pull request, merged before the next one starts.
 | --- | --- | --- | --- |
 | 0 | Current and target architecture docs | `docs/current-architecture`, `docs/target-architecture` | ✅ Done |
 | 1 | New README and `CLAUDE.md` | `docs/readme` | ✅ Done |
-| 2 | Fix the Round 1 bugs in the existing code | `fix/round-1-bugs` | 🚧 In progress |
-| 3 | Move to Vite, React, TypeScript, Tailwind, pnpm and Lucide | `chore/vite-react-ts` | Planned |
+| 2 | Fix the Round 1 bugs in the existing code | `fix/round-1-bugs` | ✅ Done |
+| 3 | Move to Vite, React, TypeScript, Tailwind, pnpm and Lucide | `chore/vite-react-ts` | 🚧 In progress |
 | 4 | Deploy to Vercel | `chore/vercel-deploy` | Planned |
 | 5 | Move data and accounts to Supabase | `feat/supabase` | Planned |
 | 6 | UI refresh | `feat/ui-refresh` | Planned |
@@ -105,19 +126,27 @@ Each step is its own branch and pull request, merged before the next one starts.
 
 | | Today | After the rollout |
 | --- | --- | --- |
-| **Frontend** | HTML · CSS · vanilla JavaScript | Vite · React · TypeScript (strict) · Tailwind CSS |
-| **Icons** | Text glyphs (♡ ⌕ ✦) | Lucide |
+| **Frontend** | Vite · React · TypeScript (strict) · Tailwind CSS v4 · Lucide icons | Same, with the refreshed UI |
 | **Type** | Playfair Display · DM Sans | Kept, refined in the UI refresh |
-| **Data** | Built-in array + `localStorage` | Supabase: Postgres, Auth, Row Level Security |
-| **Tooling** | None | pnpm |
-| **Hosting** | Any static server | Vercel |
+| **Data** | Built-in list + `localStorage`, all through `src/lib/data.ts` | Supabase: Postgres, Auth, Row Level Security |
+| **Tooling** | pnpm · oxlint · Vitest | Same |
+| **Hosting** | Any static host (`pnpm build` → `dist/`) | Vercel |
 
 ## Project structure
 
 ```
-index.html          page layout, profile and detail dialogs
-styles.css          all styling; the colour palette lives in :root
-app.js              scholarship data, filtering, profile, saving
+src/
+  App.tsx           page composition, filters, dialogs and toasts
+  components/       Header, Hero, SearchSection, ScholarshipCard, SavedSection,
+                    ProfileDialog, DetailDialog, Modal, Toast, ...
+  hooks/            useAuth, useScholarships, useSavedScholarships, useToast
+  lib/
+    data.ts         the only module that touches storage (localStorage today, Supabase in step 5)
+    matching.ts     pure, unit-tested filtering and matching
+    seed.ts         the six built-in scholarships
+    options.ts      major and region lists
+  index.css         Tailwind theme: palette, fonts, breakpoints
+  types.ts          Scholarship, Profile
 docs/               current and target architecture
 .github/assets/     logo and screenshot used by this README
 CLAUDE.md           project guide for contributors and AI assistants

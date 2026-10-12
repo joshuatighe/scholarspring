@@ -20,23 +20,29 @@ A student "qualifies" on GPA when `scholarship.min_gpa <= student.gpa`. Scholars
 
 ## Current state
 
-The roadmap is at **step 2 of 6**. The app is still the original three files:
+The roadmap is at **step 3 of 6**. The app is a Vite + React + TypeScript single page, styled with Tailwind CSS v4 and Lucide icons. It looks and behaves like the original vanilla version.
 
-| File | Role |
+### Commands
+
+| Command | Use |
 |---|---|
-| `index.html` | Page layout, profile dialog, detail dialog |
-| `styles.css` | All styles (minified); the palette lives in `:root` |
-| `app.js` | Data, filtering, profile, saving. One global `state` object; `persist()` writes `localStorage` and redraws everything |
+| `pnpm install` | Install (pnpm only; `corepack enable` picks up the pinned version) |
+| `pnpm dev` | Dev server at localhost:5173 |
+| `pnpm build` | `tsc -b` then `vite build` into `dist/` |
+| `pnpm lint` | oxlint. Use oxlint only; don't add ESLint, Prettier-as-linter or Biome |
+| `pnpm typecheck` | `tsc -b` |
+| `pnpm test` | Vitest unit tests |
 
-Run it with `python3 -m http.server 8000`. There are no dependencies, build, linter or tests yet.
+Before opening a PR, run `pnpm lint`, `pnpm typecheck`, `pnpm test` and `pnpm build`. All four must pass with no oxlint warnings. Fix the code rather than disabling a rule; if a rule truly doesn't fit, change `.oxlintrc.json` and say why in the PR.
 
-`localStorage` holds `{ accounts: { [username]: { username, password, gpa, region, major, saved: [ids] } }, current: username | null }`. State saved in the original `{ user, saved }` shape is migrated on load.
+### How the app fits together
 
-Fixed in step 2 (the Round 1 bugs in `docs/CURRENT_ARCHITECTURE.md`):
-- The GPA filter is now "Your GPA", an exact number, and keeps scholarships with `gpa <= studentGpa`.
-- Sign-out keeps the saved list; "Sign in" checks username and password; duplicate usernames are rejected.
-- Profile filters are re-applied on load and on sign-in.
-- The profile tip shows to signed-out students (`profileApplied` is gone).
+- `App.tsx` owns UI state: filters, which dialog is open, the toast. Filters are derived from the signed-in profile until the student changes one (`customFilters` is `null` until then).
+- Hooks load data through `src/lib/data.ts` and nothing else. `data.ts` is async on purpose, so step 5 can swap `localStorage` for Supabase without touching components.
+- `localStorage` key `scholarspring-demo` holds `{ accounts: { [username]: { username, password, gpa, region, major, saved: [ids] } }, current: username | null }`. The original `{ user, saved }` shape is migrated on load (`migrateState`, unit tested).
+- `Profile` never includes the password. Updating a profile with a blank password keeps the current one.
+- Dialogs are native `<dialog>` elements opened with `showModal()` (`components/Modal.tsx`). The profile form remounts each time it opens (`formKey`) instead of resetting state in an effect.
+- Breakpoints match the original CSS: `max-md:` is 800px and below, `max-sm:` is 500px and below (see `src/index.css`).
 
 Still open: passwords are stored in plain text in `localStorage` (fixed by Supabase Auth in step 5, not before).
 
@@ -57,20 +63,25 @@ When a step merges, update the roadmap table and the `roadmap-step_N_of_6` badge
 
 ## Target architecture
 
-- **Frontend:** Vite, React, TypeScript (strict), Tailwind CSS, Lucide icons. pnpm is the only package manager; commit `pnpm-lock.yaml` and never add an npm or yarn lockfile.
+- **Frontend:** Vite, React, TypeScript (strict), Tailwind CSS, Lucide icons. pnpm is the only package manager; commit `pnpm-lock.yaml` and never add an npm or yarn lockfile. Lint with oxlint only.
 - **Backend:** Supabase only. The browser talks to Supabase directly; there is no custom server. Row Level Security on every table is what keeps data private, not the UI.
 - **Hosting:** Vercel, with preview deployments for every PR.
 
-Planned layout after step 3:
+Layout (since step 3):
 
 ```
 src/
-  components/     Header, SearchPanel, ScholarshipCard, DetailDialog, ProfileDialog, SavedList
-  hooks/          useAuth, useScholarships, useSavedScholarships
+  App.tsx         page composition and UI state
+  components/     Header, Hero, SearchSection, ScholarshipCard, ScholarshipGrid, SavedSection,
+                  CtaSection, Footer, ProfileDialog, DetailDialog, Modal, Toast, Brand, button.ts
+  hooks/          useAuth, useScholarships, useSavedScholarships, useToast
   lib/
-    matching.ts   pure filter/match functions, unit tested
     data.ts       the ONLY module that touches storage (localStorage, later Supabase)
-  types.ts        Scholarship, Profile, SavedScholarship
+    matching.ts   pure filter/match functions, unit tested
+    seed.ts       built-in scholarships (become Supabase seed data in step 5)
+    options.ts    major and region lists
+  index.css       Tailwind theme tokens and base styles
+  types.ts        Scholarship, Profile, AuthMode
 ```
 
 Data model (step 5): `profiles` (id = auth user id, username, gpa, major, region), `scholarships` (name, provider, category, `amount` as whole dollars, `deadline` as a real date, `min_gpa`, `majors[]`, `regions[]`, description, eligibility), `saved_scholarships` (profile_id, scholarship_id, saved_at).
@@ -82,12 +93,14 @@ Data model (step 5): `profiles` (id = auth user id, username, gpa, major, region
 - **Scope:** keep each PR to its roadmap step. Note anything out of scope in the PR description instead of fixing it.
 - **Docs move with the code:** if a change affects the stack, structure, commands or behaviour, update `README.md` and this file in the same PR.
 - **Secrets:** never commit keys. Only `VITE_SUPABASE_URL` and `VITE_SUPABASE_ANON_KEY` may reach the browser. A service-role key must never have a `VITE_` prefix or be set in Vercel.
-- **Logic stays testable:** filtering and matching are pure functions with no DOM or network access.
+- **Logic stays testable:** filtering and matching are pure functions with no DOM or network access. New logic in `src/lib/` comes with Vitest tests next to it (`*.test.ts`).
 - **Escape user content:** no unescaped `innerHTML` with data. In React, never use `dangerouslySetInnerHTML` for scholarship or profile data.
 
 ## Design language
 
 ScholarSpring should look warm, editorial and its own. **No purple gradients, glassmorphism or generic SaaS templates.**
+
+The tokens below are Tailwind theme colours in `src/index.css` (`bg-ink`, `text-coral`, `border-line`, …). Use them instead of new hex values.
 
 | Token | Value | Use |
 |---|---|---|
