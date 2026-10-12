@@ -26,4 +26,4 @@ Open <http://localhost:8000> in a browser. A local server is recommended because
 - `styles.css` — responsive visual design.
 - `app.js` — seeded data, filtering, profile flow, details, and localStorage persistence.
 - `HW05-reflection.md` — requirements, interview findings, vibe-coding reflection, workflow, and cost estimates.
-- `docs/ARCHITECTURE.md` — reverse-engineered architecture of the current system (component, class, ER, sequence, state, and deployment diagrams).
+- `docs/CURRENT_ARCHITECTURE.md` — architecture of the current system, with diagrams.
