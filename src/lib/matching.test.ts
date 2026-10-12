@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
-import { EMPTY_FILTERS, filtersFromProfile, matchesScholarship, shortDeadline, type Filters } from './matching'
-import { SCHOLARSHIPS } from './seed'
+import { SCHOLARSHIPS } from './fixtures'
+import { EMPTY_FILTERS, filtersFromProfile, matchesScholarship, type Filters } from './matching'
 
 const ids = (filters: Partial<Filters>) =>
   SCHOLARSHIPS.filter((s) => matchesScholarship(s, { ...EMPTY_FILTERS, ...filters })).map((s) => s.id)
@@ -44,7 +44,7 @@ describe('matchesScholarship', () => {
 
 describe('filtersFromProfile', () => {
   it('maps a profile to filters', () => {
-    expect(filtersFromProfile({ username: 'maya', gpa: 3.7, major: 'Computer Science', region: 'Midwest' })).toEqual({
+    expect(filtersFromProfile({ username: 'maya', email: 'maya@example.com', gpa: 3.7, major: 'Computer Science', region: 'Midwest' })).toEqual({
       major: 'Computer Science',
       region: 'Midwest',
       gpa: '3.7',
@@ -52,17 +52,10 @@ describe('filtersFromProfile', () => {
   })
 
   it('treats Undecided and National as no filter', () => {
-    expect(filtersFromProfile({ username: 'sam', gpa: 2.6, major: 'Undecided', region: 'National' })).toEqual({
+    expect(filtersFromProfile({ username: 'sam', email: 'sam@example.com', gpa: 2.6, major: 'Undecided', region: 'National' })).toEqual({
       major: '',
       region: '',
       gpa: '2.6',
     })
-  })
-})
-
-describe('shortDeadline', () => {
-  it('drops the year', () => {
-    expect(shortDeadline('Apr 30, 2026')).toBe('Apr 30')
-    expect(shortDeadline('Jan 05, 2027')).toBe('Jan 05')
   })
 })

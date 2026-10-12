@@ -1,37 +1,39 @@
 import { useEffect, useState } from 'react'
 import * as data from '../lib/data'
-import type { Profile } from '../types'
+import type { Profile, ProfileDetails } from '../types'
 
 export function useAuth() {
   const [user, setUser] = useState<Profile | null>(null)
   const [ready, setReady] = useState(false)
-  const [hasAccounts, setHasAccounts] = useState(false)
 
   useEffect(() => {
-    void Promise.all([data.getCurrentProfile(), data.hasAccounts()]).then(([profile, accounts]) => {
-      setUser(profile)
-      setHasAccounts(accounts)
-      setReady(true)
-    })
+    data.clearLegacyStorage()
+    data
+      .getCurrentProfile()
+      .catch(() => null)
+      .then((profile) => {
+        setUser(profile)
+        setReady(true)
+      })
+    return data.onSignedOut(() => setUser(null))
   }, [])
 
   return {
     user,
     ready,
-    hasAccounts,
-    async signIn(username: string, password: string) {
-      const profile = await data.signIn(username, password)
+    async signIn(email: string, password: string) {
+      const profile = await data.signIn(email, password)
       setUser(profile)
       return profile
     },
-    async signUp(profile: Profile, password: string) {
-      const created = await data.signUp(profile, password)
+    /** Resolves to null when the account needs email confirmation before signing in. */
+    async signUp(profile: Omit<Profile, 'email'>, email: string, password: string) {
+      const created = await data.signUp(profile, email, password)
       setUser(created)
-      setHasAccounts(true)
       return created
     },
-    async updateProfile(profile: Omit<Profile, 'username'>, password: string) {
-      const updated = await data.updateProfile(profile, password)
+    async updateProfile(details: ProfileDetails, password: string) {
+      const updated = await data.updateProfile(details, password)
       setUser(updated)
       return updated
     },

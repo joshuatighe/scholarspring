@@ -14,7 +14,7 @@ and keep a shortlist of the scholarships worth applying to.
 
 <p>
   <a href="https://scholarspring-snowy.vercel.app"><picture><source media="(prefers-color-scheme: dark)" srcset="https://img.shields.io/badge/live_demo-scholarspring--snowy.vercel.app-ec795f?style=flat-square&logo=vercel&logoColor=white&labelColor=3b5a53"><img alt="Live demo" src="https://img.shields.io/badge/live_demo-scholarspring--snowy.vercel.app-ec795f?style=flat-square&logo=vercel&logoColor=white&labelColor=193631"></picture></a>&nbsp;
-  <a href="#roadmap"><picture><source media="(prefers-color-scheme: dark)" srcset="https://img.shields.io/badge/roadmap-step_4_of_6-24413b?style=flat-square&labelColor=3b5a53"><img alt="Roadmap: step 4 of 6" src="https://img.shields.io/badge/roadmap-step_4_of_6-ec795f?style=flat-square&labelColor=193631"></picture></a>&nbsp;
+  <a href="#roadmap"><picture><source media="(prefers-color-scheme: dark)" srcset="https://img.shields.io/badge/roadmap-step_5_of_6-24413b?style=flat-square&labelColor=3b5a53"><img alt="Roadmap: step 5 of 6" src="https://img.shields.io/badge/roadmap-step_5_of_6-ec795f?style=flat-square&labelColor=193631"></picture></a>&nbsp;
   <a href="https://github.com/joshuatighe/scholarspring/deployments"><picture><source media="(prefers-color-scheme: dark)" srcset="https://img.shields.io/github/deployments/joshuatighe/scholarspring/Production?style=flat-square&logo=vercel&label=production&logoColor=white&labelColor=3b5a53"><img alt="Production deployment" src="https://img.shields.io/github/deployments/joshuatighe/scholarspring/Production?style=flat-square&logo=vercel&label=production&logoColor=white&labelColor=193631"></picture></a>&nbsp;
   <a href="https://github.com/joshuatighe/scholarspring/actions/workflows/ci.yml"><picture><source media="(prefers-color-scheme: dark)" srcset="https://img.shields.io/github/actions/workflow/status/joshuatighe/scholarspring/ci.yml?branch=main&style=flat-square&logo=githubactions&label=ci&logoColor=white&labelColor=3b5a53"><img alt="CI" src="https://img.shields.io/github/actions/workflow/status/joshuatighe/scholarspring/ci.yml?branch=main&style=flat-square&logo=githubactions&label=ci&logoColor=white&labelColor=193631"></picture></a>&nbsp;
   <a href="https://github.com/joshuatighe/scholarspring/commits/main"><picture><source media="(prefers-color-scheme: dark)" srcset="https://img.shields.io/github/last-commit/joshuatighe/scholarspring/main?style=flat-square&logo=github&label=last%20commit&color=24413b&logoColor=white&labelColor=3b5a53"><img alt="Last commit" src="https://img.shields.io/github/last-commit/joshuatighe/scholarspring/main?style=flat-square&logo=github&label=last%20commit&color=d8ebe1&logoColor=white&labelColor=193631"></picture></a>&nbsp;
@@ -26,13 +26,14 @@ and keep a shortlist of the scholarships worth applying to.
   <a href="https://www.typescriptlang.org/docs/"><picture><source media="(prefers-color-scheme: dark)" srcset="https://img.shields.io/badge/TypeScript-7-24413b?style=flat-square&logo=typescript&logoColor=white&labelColor=3b5a53"><img alt="TypeScript 7" src="https://img.shields.io/badge/TypeScript-7-d8ebe1?style=flat-square&logo=typescript&logoColor=white&labelColor=193631"></picture></a>&nbsp;
   <a href="https://vite.dev/guide/"><picture><source media="(prefers-color-scheme: dark)" srcset="https://img.shields.io/badge/Vite-8-24413b?style=flat-square&logo=vite&logoColor=white&labelColor=3b5a53"><img alt="Vite 8" src="https://img.shields.io/badge/Vite-8-d8ebe1?style=flat-square&logo=vite&logoColor=white&labelColor=193631"></picture></a>&nbsp;
   <a href="https://tailwindcss.com/docs"><picture><source media="(prefers-color-scheme: dark)" srcset="https://img.shields.io/badge/Tailwind_CSS-4-24413b?style=flat-square&logo=tailwindcss&logoColor=white&labelColor=3b5a53"><img alt="Tailwind CSS 4" src="https://img.shields.io/badge/Tailwind_CSS-4-d8ebe1?style=flat-square&logo=tailwindcss&logoColor=white&labelColor=193631"></picture></a>&nbsp;
+  <a href="https://supabase.com/docs"><picture><source media="(prefers-color-scheme: dark)" srcset="https://img.shields.io/badge/Supabase-Postgres_%2B_RLS-24413b?style=flat-square&logo=supabase&logoColor=white&labelColor=3b5a53"><img alt="Supabase" src="https://img.shields.io/badge/Supabase-Postgres_%2B_RLS-d8ebe1?style=flat-square&logo=supabase&logoColor=white&labelColor=193631"></picture></a>&nbsp;
   <a href="https://lucide.dev"><picture><source media="(prefers-color-scheme: dark)" srcset="https://img.shields.io/badge/Lucide-icons-24413b?style=flat-square&logo=lucide&logoColor=white&labelColor=3b5a53"><img alt="Lucide icons" src="https://img.shields.io/badge/Lucide-icons-d8ebe1?style=flat-square&logo=lucide&logoColor=white&labelColor=193631"></picture></a>&nbsp;
   <a href="https://oxc.rs/docs/guide/usage/linter"><picture><source media="(prefers-color-scheme: dark)" srcset="https://img.shields.io/badge/oxlint-1-24413b?style=flat-square&logo=oxc&logoColor=white&labelColor=3b5a53"><img alt="oxlint 1" src="https://img.shields.io/badge/oxlint-1-d8ebe1?style=flat-square&logo=oxc&logoColor=white&labelColor=193631"></picture></a>&nbsp;
   <a href="https://vitest.dev"><picture><source media="(prefers-color-scheme: dark)" srcset="https://img.shields.io/badge/Vitest-5-24413b?style=flat-square&logo=vitest&logoColor=white&labelColor=3b5a53"><img alt="Vitest 5" src="https://img.shields.io/badge/Vitest-5-d8ebe1?style=flat-square&logo=vitest&logoColor=white&labelColor=193631"></picture></a>&nbsp;
   <a href="https://pnpm.io/motivation"><picture><source media="(prefers-color-scheme: dark)" srcset="https://img.shields.io/badge/pnpm-10-24413b?style=flat-square&logo=pnpm&logoColor=white&labelColor=3b5a53"><img alt="pnpm 10" src="https://img.shields.io/badge/pnpm-10-d8ebe1?style=flat-square&logo=pnpm&logoColor=white&labelColor=193631"></picture></a>
 </p>
 
-<sub>[Live demo](https://scholarspring-snowy.vercel.app) · [Features](#features) · [Getting started](#getting-started) · [Scripts](#scripts) · [Deploy](#deploy) · [Roadmap](#roadmap) · [Architecture](#architecture) · [Stack](#stack)</sub>
+<sub>[Live demo](https://scholarspring-snowy.vercel.app) · [Features](#features) · [Getting started](#getting-started) · [Environment](#environment) · [Scripts](#scripts) · [Deploy](#deploy) · [Roadmap](#roadmap) · [Architecture](#architecture) · [Stack](#stack)</sub>
 
 <br><br>
 
@@ -46,31 +47,59 @@ and keep a shortlist of the scholarships worth applying to.
 
 - **Search.** Find scholarships by name, provider or category as you type.
 - **Filters.** Narrow results by major and region, and enter your GPA to see only awards you qualify for. "Any major" and national awards always show up.
-- **Student profile.** Enter your GPA, intended major and preferred region once, and the filters are set for you every time you visit. Sign out and back in; several students can share one browser.
+- **Student account.** Sign up with your email, a username, your GPA, intended major and preferred region. The filters are set from your profile every time you sign in, on any device.
 - **Scholarship details.** Open any card for the full description, award, deadline, minimum GPA and who it's for.
-- **Saved list.** Heart a scholarship to keep it. The count shows in the header, and your list survives a refresh and signing out.
+- **Saved list.** Heart a scholarship to keep it. Your list is stored with your account, so it follows you to any device.
+- **Private by design.** Postgres Row Level Security, not the UI, makes sure each student can only see and change their own profile and saved list.
 - **Responsive.** Works on phones, with a collapsible menu below 800px.
 
 > [!NOTE]
-> ScholarSpring is being rebuilt step by step (see the [roadmap](#roadmap)). Today it is a frontend-only demo:
-> the six scholarships are built in, and your profile and saved list live in your browser's `localStorage`.
+> ScholarSpring is being rebuilt step by step (see the [roadmap](#roadmap)). The last step is a UI refresh.
 
 ## Getting started
 
 ### 1. Prerequisites
 - Node.js 20.19+ or 22.12+, and [pnpm](https://pnpm.io) 10 (`corepack enable` picks up the pinned version)
+- A free [Supabase](https://supabase.com) project
 
-### 2. Install and run
+### 2. Install
 
 ```bash
 git clone https://github.com/joshuatighe/scholarspring.git
 cd scholarspring
 pnpm install
+cp .env.example .env.local   # then fill in your Supabase URL and anon key
+```
+
+### 3. Set up the database
+
+In the Supabase dashboard, open **SQL Editor** and run each file in [`supabase/migrations/`](supabase/migrations) in
+order. The first creates the tables, security rules and sign-up trigger; the second adds the six scholarships.
+
+<details>
+<summary><strong>Or use the Supabase CLI</strong></summary>
+
+<br>
+
+```bash
+pnpm dlx supabase login
+pnpm dlx supabase link --project-ref <your-project-ref>
+pnpm dlx supabase db push
+```
+
+</details>
+
+> [!TIP]
+> For instant sign-ups, turn off **Authentication → Sign In / Providers → Email → Confirm email** in Supabase.
+> With it on, students confirm their email before their first sign-in, and the app tells them so.
+
+### 4. Run
+
+```bash
 pnpm dev
 ```
 
-Open [localhost:5173](http://localhost:5173). There are no environment variables or accounts to set up yet.
-Or skip the setup and try the [live demo](https://scholarspring-snowy.vercel.app).
+Open [localhost:5173](http://localhost:5173), or skip the setup and try the [live demo](https://scholarspring-snowy.vercel.app).
 
 <details>
 <summary><strong>Try it out</strong></summary>
@@ -78,20 +107,33 @@ Or skip the setup and try the [live demo](https://scholarspring-snowy.vercel.app
 <br>
 
 1. Browse or search the scholarships while signed out.
-2. Select **Create a free profile** and enter any username, a 6+ character password, a GPA from 0–4, a major and a region.
+2. Select **Create a free profile** and enter an email, a username, a 6+ character password, a GPA from 0–4, a major and a region.
 3. Back in the results, the filters are set from your profile. Change them to explore.
 4. Open a scholarship's details and save it.
-5. Open **Saved** in the header to see your list. It is still there after a refresh.
-6. Sign out from the profile dialog, then use **Sign in** in the header to get your list back.
+5. Open **Saved** in the header to see your list.
+6. Sign out from the profile dialog, then sign in on another browser or your phone: your list is there too.
 
 </details>
 
 ## Known issues
 
-The bugs found in the [Round 1 architecture review](docs/CURRENT_ARCHITECTURE.md#problems-we-noticed) are fixed. What remains is part of the demo design and changes with the stack:
+The problems found in the [Round 1 architecture review](docs/CURRENT_ARCHITECTURE.md#problems-we-noticed) are fixed.
 
-- Accounts and saved lists live only in this browser, and passwords are stored there as plain text. Both go away with Supabase in step 5.
-- Scholarships are built into the code, so adding one means editing `src/lib/seed.ts`. Also fixed in step 5.
+- All six seeded scholarships have deadlines between April and August 2026. Add or update scholarships in the
+  Supabase dashboard (**Table Editor → scholarships**) or with a new migration.
+- Accounts from the old browser-only version aren't carried over; students sign up again. The app deletes that old
+  data, which included plain-text passwords, from the browser on first load.
+- There's no "forgot password" flow yet.
+
+## Environment
+
+| Variable | Where | Description |
+| --- | --- | --- |
+| `VITE_SUPABASE_URL` | `.env.local`, Vercel | Project URL, e.g. `https://<ref>.supabase.co` |
+| `VITE_SUPABASE_ANON_KEY` | `.env.local`, Vercel | Public anon key. Safe in the browser because Row Level Security enforces access |
+
+Find both in Supabase under **Connect** or **Project Settings → API**. Never put the `service_role` key or the database
+password in the app, `.env.local`, or Vercel. Without these variables the app shows a setup notice instead of data.
 
 ## Scripts
 
@@ -110,7 +152,10 @@ Every pull request and push to `main` runs lint, typecheck, tests and build in [
 
 1. Import the repo into [Vercel](https://vercel.com/new). The framework preset is **Vite**, and pnpm is detected from
    `pnpm-lock.yaml`. `vercel.json` pins the install, build and output settings.
-2. Deploy. There are no environment variables yet; Supabase keys arrive in step 5.
+2. Add `VITE_SUPABASE_URL` and `VITE_SUPABASE_ANON_KEY` under **Settings → Environment Variables**, for Production
+   and Preview.
+3. In Supabase → **Authentication → URL Configuration**, set the Site URL to your production URL.
+4. Deploy.
 
 Production: **[scholarspring-snowy.vercel.app](https://scholarspring-snowy.vercel.app)**
 
@@ -130,8 +175,8 @@ Each step is its own branch and pull request, merged before the next one starts.
 | 1 | New README and `CLAUDE.md` | `docs/readme` | ✅ Done |
 | 2 | Fix the Round 1 bugs in the existing code | `fix/round-1-bugs` | ✅ Done |
 | 3 | Move to Vite, React, TypeScript, Tailwind, pnpm and Lucide | `chore/vite-react-ts` | ✅ Done |
-| 4 | Deploy to Vercel | `chore/vercel-deploy` | 🚧 In progress |
-| 5 | Move data and accounts to Supabase | `feat/supabase` | Planned |
+| 4 | Deploy to Vercel | `chore/vercel-deploy` | ✅ Done |
+| 5 | Move data and accounts to Supabase | `feat/supabase` | 🚧 In progress |
 | 6 | UI refresh | `feat/ui-refresh` | Planned |
 
 ## Architecture
@@ -148,7 +193,7 @@ Each step is its own branch and pull request, merged before the next one starts.
 | --- | --- | --- |
 | **Frontend** | Vite · React · TypeScript (strict) · Tailwind CSS v4 · Lucide icons | Same, with the refreshed UI |
 | **Type** | Playfair Display · DM Sans | Kept, refined in the UI refresh |
-| **Data** | Built-in list + `localStorage`, all through `src/lib/data.ts` | Supabase: Postgres, Auth, Row Level Security |
+| **Data** | Supabase: Postgres, Auth, Row Level Security, all through `src/lib/data.ts` | Same |
 | **Tooling** | pnpm · oxlint · Vitest · GitHub Actions | Same |
 | **Hosting** | Vercel, with a preview for every PR | Same |
 
@@ -161,15 +206,20 @@ src/
                     ProfileDialog, DetailDialog, Modal, Toast, ...
   hooks/            useAuth, useScholarships, useSavedScholarships, useToast
   lib/
-    data.ts         the only module that touches storage (localStorage today, Supabase in step 5)
+    data.ts         the only module that talks to Supabase (auth, profiles, scholarships, saved list)
+    supabase.ts     the Supabase client, created from the VITE_ environment variables
+    database.types.ts  row types for the tables in supabase/migrations
     matching.ts     pure, unit-tested filtering and matching
-    seed.ts         the six built-in scholarships
+    format.ts       money and date formatting
     options.ts      major and region lists
+    fixtures.ts     the seeded scholarships, for tests
   index.css         Tailwind theme: palette, fonts, breakpoints
   types.ts          Scholarship, Profile
+supabase/migrations/  schema, Row Level Security, sign-up trigger, seed scholarships
 docs/               current and target architecture
 .github/assets/     logo and screenshot used by this README
 CLAUDE.md           project guide for contributors and AI assistants
+.env.example        the two Supabase variables the app needs
 vercel.json         Vercel build settings and headers
 .github/workflows/  CI: lint, typecheck, test, build
 ```

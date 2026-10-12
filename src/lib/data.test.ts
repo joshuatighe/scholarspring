@@ -1,105 +1,105 @@
-import { beforeEach, describe, expect, it, vi } from 'vitest'
+import { describe, expect, it, vi } from 'vitest'
 import * as data from './data'
+import type { ScholarshipRow } from './database.types'
 
-function memoryStorage() {
-  const items = new Map<string, string>()
-  return {
-    getItem: (key: string) => items.get(key) ?? null,
-    setItem: (key: string, value: string) => void items.set(key, value),
-    removeItem: (key: string) => void items.delete(key),
-    clear: () => items.clear(),
-  }
+const row: ScholarshipRow = {
+  id: 'stem-forward',
+  name: 'STEM Forward Scholarship',
+  provider: 'Bright Futures Foundation',
+  category: 'STEM & Innovation',
+  amount: 10000,
+  deadline: '2026-04-30',
+  min_gpa: 3.2,
+  majors: ['Computer Science'],
+  regions: ['National'],
+  description: 'd',
+  eligibility: 'e',
+  url: null,
+  created_at: '2026-10-12T00:00:00Z',
 }
 
-const maya = { username: 'maya', gpa: 3.7, major: 'Computer Science', region: 'Midwest' }
-const stored = () => JSON.parse(localStorage.getItem(data.STORAGE_KEY) ?? 'null')
-
-beforeEach(() => {
-  vi.stubGlobal('localStorage', memoryStorage())
-})
-
-describe('migrateState', () => {
-  it('returns an empty state for nothing or junk', () => {
-    expect(data.migrateState(null)).toEqual({ accounts: {}, current: null })
-    expect(data.migrateState('junk')).toEqual({ accounts: {}, current: null })
-  })
-
-  it('upgrades the original { user, saved } shape', () => {
-    const migrated = data.migrateState({
-      user: { username: 'old', password: 'pw1234', gpa: 3.3, region: 'West', major: 'Business', profileApplied: true },
-      saved: ['green-future'],
-    })
-    expect(migrated).toEqual({
-      accounts: { old: { username: 'old', password: 'pw1234', gpa: 3.3, region: 'West', major: 'Business', saved: ['green-future'] } },
-      current: 'old',
+describe('toScholarship', () => {
+  it('maps a database row to the app shape', () => {
+    expect(data.toScholarship(row)).toEqual({
+      id: 'stem-forward',
+      name: 'STEM Forward Scholarship',
+      provider: 'Bright Futures Foundation',
+      category: 'STEM & Innovation',
+      amount: 10000,
+      deadline: '2026-04-30',
+      gpa: 3.2,
+      majors: ['Computer Science'],
+      regions: ['National'],
+      description: 'd',
+      eligibility: 'e',
     })
   })
 
-  it('keeps the current shape as is', () => {
-    const state = { accounts: { maya: { ...maya, password: 'x', saved: [] } }, current: null }
-    expect(data.migrateState(state)).toEqual(state)
+  it('accepts numeric columns that arrive as strings', () => {
+    expect(data.toScholarship({ ...row, min_gpa: '3.20' as unknown as number }).gpa).toBe(3.2)
   })
 })
 
-describe('accounts', () => {
-  it('signs up, signs out and signs back in without losing saved scholarships', async () => {
-    await data.signUp(maya, 'secret1')
-    await data.setSaved('stem-forward', true)
-    await data.signOut()
-    expect(await data.getCurrentProfile()).toBeNull()
-    expect(await data.hasAccounts()).toBe(true)
+describe('toProfile', () => {
+  it('adds the email and never includes anything else', () => {
+    expect(data.toProfile({ username: 'maya', gpa: 3.7, major: 'Business', region: 'West' }, 'maya@example.com')).toEqual({
+      username: 'maya',
+      email: 'maya@example.com',
+      gpa: 3.7,
+      major: 'Business',
+      region: 'West',
+    })
+  })
+})
 
-    expect(await data.signIn('maya', 'secret1')).toEqual(maya)
-    expect(await data.getSavedIds()).toEqual(['stem-forward'])
+describe('authErrorMessage', () => {
+  it('explains common Supabase Auth errors', () => {
+    expect(data.authErrorMessage({ code: 'invalid_credentials', message: 'Invalid login credentials' })).toBe(
+      'That email and password don’t match.',
+    )
+    expect(data.authErrorMessage({ code: 'user_already_exists', message: 'User already registered' })).toMatch(/already exists/)
+    expect(data.authErrorMessage({ code: 'weak_password', message: 'weak' })).toMatch(/stronger password/)
+    expect(data.authErrorMessage({ code: 'over_request_rate_limit', message: 'rate' })).toMatch(/Too many attempts/)
   })
 
-  it('never returns the password', async () => {
-    const profile = await data.signUp(maya, 'secret1')
-    expect(profile).not.toHaveProperty('password')
-    expect(await data.getCurrentProfile()).not.toHaveProperty('password')
+  it('explains a sign-up that lost a race for the username', () => {
+    expect(data.authErrorMessage({ code: 'unexpected_failure', message: 'Database error saving new user' })).toBe(
+      'That username was just taken. Try another one.',
+    )
   })
 
-  it('rejects a wrong password and a taken username', async () => {
-    await data.signUp(maya, 'secret1')
-    await data.signOut()
-    await expect(data.signIn('maya', 'nope')).rejects.toBeInstanceOf(data.AuthError)
-    await expect(data.signIn('nobody', 'secret1')).rejects.toBeInstanceOf(data.AuthError)
-    await expect(data.signUp(maya, 'other')).rejects.toBeInstanceOf(data.AuthError)
+  it('falls back to the original message, then a generic one', () => {
+    expect(data.authErrorMessage({ code: 'something_new', message: 'Specific detail' })).toBe('Specific detail')
+    expect(data.authErrorMessage({ message: '' })).toBe('Something went wrong. Please try again.')
+  })
+})
+
+describe('clearLegacyStorage', () => {
+  it('removes the old browser-only accounts', () => {
+    const storage = { removeItem: vi.fn<(key: string) => void>() }
+    data.clearLegacyStorage(storage)
+    expect(storage.removeItem).toHaveBeenCalledWith('scholarspring-demo')
   })
 
-  it('updates the profile and keeps the password when left blank', async () => {
-    await data.signUp(maya, 'secret1')
-    await data.updateProfile({ gpa: 3.9, major: 'Business', region: 'West' }, '')
-    expect(await data.getCurrentProfile()).toEqual({ username: 'maya', gpa: 3.9, major: 'Business', region: 'West' })
-    await data.signOut()
-    await expect(data.signIn('maya', 'secret1')).resolves.toBeTruthy()
+  it('ignores storage that throws', () => {
+    expect(() =>
+      data.clearLegacyStorage({
+        removeItem: () => {
+          throw new Error('blocked')
+        },
+      }),
+    ).not.toThrow()
+  })
+})
+
+describe('without Supabase configured', () => {
+  it('rejects with a DataError instead of crashing', async () => {
+    await expect(data.getScholarships()).rejects.toBeInstanceOf(data.DataError)
+    await expect(data.signIn('a@b.c', 'secret1')).rejects.toBeInstanceOf(data.DataError)
   })
 
-  it('keeps saved lists separate per account', async () => {
-    await data.signUp(maya, 'secret1')
-    await data.setSaved('stem-forward', true)
-    await data.signOut()
-    await data.signUp({ ...maya, username: 'sam' }, 'secret2')
-    expect(await data.getSavedIds()).toEqual([])
-  })
-
-  it('saves and unsaves without duplicates', async () => {
-    await data.signUp(maya, 'secret1')
-    await data.setSaved('first-gen', true)
-    await data.setSaved('first-gen', true)
-    expect(await data.getSavedIds()).toEqual(['first-gen'])
-    await data.setSaved('first-gen', false)
-    expect(await data.getSavedIds()).toEqual([])
-  })
-
-  it('refuses to save while signed out', async () => {
-    await expect(data.setSaved('first-gen', true)).rejects.toBeInstanceOf(data.AuthError)
-  })
-
-  it('writes migrated state back in the new shape', async () => {
-    localStorage.setItem(data.STORAGE_KEY, JSON.stringify({ user: { ...maya, password: 'pw' }, saved: [] }))
-    await data.getCurrentProfile()
-    expect(stored()).toHaveProperty('accounts.maya')
-    expect(stored()).toHaveProperty('current', 'maya')
+  it('treats the student as signed out', () => {
+    const unsubscribe = data.onSignedOut(() => {})
+    expect(unsubscribe).toBeTypeOf('function')
   })
 })

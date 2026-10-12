@@ -3,7 +3,9 @@ export interface Scholarship {
   name: string
   provider: string
   category: string
-  amount: string
+  /** Whole US dollars. */
+  amount: number
+  /** ISO date, e.g. "2026-04-30". */
   deadline: string
   /** Minimum GPA required to apply. */
   gpa: number
@@ -13,14 +15,17 @@ export interface Scholarship {
   regions: string[]
   description: string
   eligibility: string
-  url: string
 }
 
 export interface Profile {
   username: string
+  email: string
   gpa: number
   region: string
   major: string
 }
+
+/** The parts of a profile a student can change after sign-up. */
+export type ProfileDetails = Pick<Profile, 'gpa' | 'region' | 'major'>
 
 export type AuthMode = 'profile' | 'signin'

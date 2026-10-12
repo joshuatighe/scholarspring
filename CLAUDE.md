@@ -20,7 +20,7 @@ A student "qualifies" on GPA when `scholarship.min_gpa <= student.gpa`. Scholars
 
 ## Current state
 
-The roadmap is at **step 4 of 6**. Production: https://scholarspring-snowy.vercel.app (Vercel, deploys from `main`). The app is a Vite + React + TypeScript single page, styled with Tailwind CSS v4 and Lucide icons. It looks and behaves like the original vanilla version.
+The roadmap is at **step 5 of 6**. Production: https://scholarspring-snowy.vercel.app (Vercel, deploys from `main`). The app is a Vite + React + TypeScript single page, styled with Tailwind CSS v4 and Lucide icons, with Supabase for accounts and data. It still looks like the original; the redesign is step 6.
 
 ### Commands
 
@@ -37,14 +37,31 @@ Before opening a PR, run `pnpm lint`, `pnpm typecheck`, `pnpm test` and `pnpm bu
 
 ### How the app fits together
 
-- `App.tsx` owns UI state: filters, which dialog is open, the toast. Filters are derived from the signed-in profile until the student changes one (`customFilters` is `null` until then).
-- Hooks load data through `src/lib/data.ts` and nothing else. `data.ts` is async on purpose, so step 5 can swap `localStorage` for Supabase without touching components.
-- `localStorage` key `scholarspring-demo` holds `{ accounts: { [username]: { username, password, gpa, region, major, saved: [ids] } }, current: username | null }`. The original `{ user, saved }` shape is migrated on load (`migrateState`, unit tested).
-- `Profile` never includes the password. Updating a profile with a blank password keeps the current one.
+- `App.tsx` owns UI state: filters, which dialog is open, the toast, `busy` while a request runs. Filters are derived from the signed-in profile until the student changes one (`customFilters` is `null` until then).
+- Hooks load data through `src/lib/data.ts` and nothing else; only `data.ts` imports the Supabase client (`src/lib/supabase.ts`). Expected failures are `AuthError` (message shown to the student as is) or `DataError`; anything else gets a generic toast.
+- `Profile` is `{ username, email, gpa, major, region }` and never includes a password. Sign-in is email + password; the username is chosen at sign-up and can't change. Updating a profile with a blank password keeps the current one.
+- Without `VITE_SUPABASE_URL` / `VITE_SUPABASE_ANON_KEY`, `supabase` is `null`, data calls reject with `DataError`, and the app shows `ConfigNotice`. Unit tests always run unconfigured (see `vite.config.ts`).
+- supabase-js keeps the session in `localStorage` itself. On load the app deletes the old `scholarspring-demo` key, which held the browser-only accounts with plain-text passwords.
 - Dialogs are native `<dialog>` elements opened with `showModal()` (`components/Modal.tsx`). The profile form remounts each time it opens (`formKey`) instead of resetting state in an effect.
 - Breakpoints match the original CSS: `max-md:` is 800px and below, `max-sm:` is 500px and below (see `src/index.css`).
 
-Still open: passwords are stored in plain text in `localStorage` (fixed by Supabase Auth in step 5, not before).
+### Database
+
+Schema lives in `supabase/migrations/` (applied with the SQL Editor or `supabase db push`); `src/lib/database.types.ts` mirrors it by hand.
+
+| Table | Who can do what (Row Level Security + grants) |
+|---|---|
+| `scholarships` | Everyone (anon and signed in) can read. Nobody can write from the app; edit in the dashboard or a migration. `id` is a slug like `stem-forward`. |
+| `profiles` | One row per auth user, created by the `on_auth_user_created` trigger from the `signUp` metadata. A student can read and update only their own row, and only `gpa`, `major`, `region` (column grants). Usernames are unique ignoring case. |
+| `saved_scholarships` | A student can read, insert and delete only their own rows. `profile_id` defaults to `auth.uid()`. No updates. |
+
+`username_available(name)` is a `security definer` function anon can call, so sign-up can say "username taken" before creating the account.
+
+Rules for schema changes:
+- Never edit a migration that has been applied; add a new timestamped file.
+- Every new table gets RLS enabled and explicit policies in the same migration. Revoke what clients shouldn't do.
+- Update `database.types.ts`, `toScholarship`/`toProfile` and the tests with it.
+- Never use the `service_role` key or database password in the app, `.env.local`, Vercel or CI.
 
 ## Roadmap
 
@@ -76,15 +93,18 @@ src/
                   CtaSection, Footer, ProfileDialog, DetailDialog, Modal, Toast, Brand, button.ts
   hooks/          useAuth, useScholarships, useSavedScholarships, useToast
   lib/
-    data.ts       the ONLY module that touches storage (localStorage, later Supabase)
+    data.ts       the ONLY module that talks to Supabase
+    supabase.ts   the Supabase client (null when the VITE_ variables are missing)
+    database.types.ts  row types mirroring supabase/migrations
     matching.ts   pure filter/match functions, unit tested
-    seed.ts       built-in scholarships (become Supabase seed data in step 5)
+    format.ts     money and date formatting (UTC)
+    fixtures.ts   the seeded scholarships, for tests
     options.ts    major and region lists
   index.css       Tailwind theme tokens and base styles
   types.ts        Scholarship, Profile, AuthMode
 ```
 
-Data model (step 5): `profiles` (id = auth user id, username, gpa, major, region), `scholarships` (name, provider, category, `amount` as whole dollars, `deadline` as a real date, `min_gpa`, `majors[]`, `regions[]`, description, eligibility), `saved_scholarships` (profile_id, scholarship_id, saved_at).
+Data model (since step 5): see [Database](#database) above.
 
 ## Conventions
 
@@ -132,4 +152,8 @@ The tokens below are Tailwind theme colours in `src/index.css` (`bg-ink`, `text-
 | Port the UI as-is in step 3, redesign in step 6 | Keeps the stack change reviewable on its own |
 | One storage module (`src/lib/data.ts`) | The localStorage → Supabase switch touches one file |
 | Supabase directly from the browser, guarded by RLS | No server to build or host; the anon key is safe to expose when RLS is on |
+| Email + password sign-in, username kept for display | Standard Supabase Auth, so password reset can be added later; the username still personalises the UI |
+| Profiles created by a database trigger from sign-up metadata | Works even when email confirmation is on (no session yet), and a profile can't exist without an account |
+| Scholarship ids are slugs, not UUIDs | Readable, stable ids that match the original data |
+| Amount as whole dollars, deadline as a `date` | So they can be sorted and filtered; the UI formats them (`src/lib/format.ts`, in UTC so days never shift) |
 | Keep the existing palette and typefaces | The original identity is already distinctive; refine it rather than replace it |

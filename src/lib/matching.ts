@@ -31,8 +31,3 @@ export function filtersFromProfile(profile: Profile): Omit<Filters, 'query'> {
     gpa: String(profile.gpa),
   }
 }
-
-/** "Apr 30, 2026" → "Apr 30", for compact cards. */
-export function shortDeadline(deadline: string): string {
-  return deadline.replace(/,\s*\d{4}$/, '')
-}
