@@ -20,7 +20,7 @@ A student "qualifies" on GPA when `scholarship.min_gpa <= student.gpa`. Scholars
 
 ## Current state
 
-The roadmap is at **step 1 of 6**. The app is still the original three files:
+The roadmap is at **step 2 of 6**. The app is still the original three files:
 
 | File | Role |
 |---|---|
@@ -30,12 +30,15 @@ The roadmap is at **step 1 of 6**. The app is still the original three files:
 
 Run it with `python3 -m http.server 8000`. There are no dependencies, build, linter or tests yet.
 
-Known bugs (details in `docs/CURRENT_ARCHITECTURE.md`):
-- GPA filter is backwards: it keeps scholarships with `gpa >= minGpa`, and the profile snaps the student's GPA to the nearest option, which can round up.
-- Sign-out wipes `state.saved`; "Sign in" only shows a toast.
-- Profile-derived filters aren't persisted, so they reset on reload.
-- `profileApplied` is always `true`, so the profile tip never shows.
-- Passwords are stored in plain text in `localStorage` (fixed by Supabase Auth in step 5, not before).
+`localStorage` holds `{ accounts: { [username]: { username, password, gpa, region, major, saved: [ids] } }, current: username | null }`. State saved in the original `{ user, saved }` shape is migrated on load.
+
+Fixed in step 2 (the Round 1 bugs in `docs/CURRENT_ARCHITECTURE.md`):
+- The GPA filter is now "Your GPA", an exact number, and keeps scholarships with `gpa <= studentGpa`.
+- Sign-out keeps the saved list; "Sign in" checks username and password; duplicate usernames are rejected.
+- Profile filters are re-applied on load and on sign-in.
+- The profile tip shows to signed-out students (`profileApplied` is gone).
+
+Still open: passwords are stored in plain text in `localStorage` (fixed by Supabase Auth in step 5, not before).
 
 ## Roadmap
 

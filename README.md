@@ -13,7 +13,7 @@ A scholarship finder for students. Search and filter awards, build a profile onc
 and keep a shortlist of the scholarships worth applying to.
 
 <p>
-  <a href="#roadmap"><picture><source media="(prefers-color-scheme: dark)" srcset="https://img.shields.io/badge/roadmap-step_1_of_6-24413b?style=flat-square&labelColor=3b5a53"><img alt="Roadmap: step 1 of 6" src="https://img.shields.io/badge/roadmap-step_1_of_6-ec795f?style=flat-square&labelColor=193631"></picture></a>&nbsp;
+  <a href="#roadmap"><picture><source media="(prefers-color-scheme: dark)" srcset="https://img.shields.io/badge/roadmap-step_2_of_6-24413b?style=flat-square&labelColor=3b5a53"><img alt="Roadmap: step 2 of 6" src="https://img.shields.io/badge/roadmap-step_2_of_6-ec795f?style=flat-square&labelColor=193631"></picture></a>&nbsp;
   <a href="https://github.com/joshuatighe/scholarspring/commits/main"><picture><source media="(prefers-color-scheme: dark)" srcset="https://img.shields.io/github/last-commit/joshuatighe/scholarspring/main?style=flat-square&logo=github&label=last%20commit&color=24413b&logoColor=white&labelColor=3b5a53"><img alt="Last commit" src="https://img.shields.io/github/last-commit/joshuatighe/scholarspring/main?style=flat-square&logo=github&label=last%20commit&color=d8ebe1&logoColor=white&labelColor=193631"></picture></a>&nbsp;
   <a href="https://github.com/joshuatighe/scholarspring/pulls?q=is%3Apr+is%3Amerged"><picture><source media="(prefers-color-scheme: dark)" srcset="https://img.shields.io/github/issues-pr-closed/joshuatighe/scholarspring?style=flat-square&logo=github&label=pull%20requests&color=24413b&logoColor=white&labelColor=3b5a53"><img alt="Pull requests" src="https://img.shields.io/github/issues-pr-closed/joshuatighe/scholarspring?style=flat-square&logo=github&label=pull%20requests&color=d8ebe1&logoColor=white&labelColor=193631"></picture></a>
 </p>
@@ -38,10 +38,10 @@ and keep a shortlist of the scholarships worth applying to.
 ## Features
 
 - **Search.** Find scholarships by name, provider or category as you type.
-- **Filters.** Narrow results by major, region and minimum GPA. "Any major" and national awards always show up.
-- **Student profile.** Enter your GPA, intended major and preferred region once, and the filters are set for you.
+- **Filters.** Narrow results by major and region, and enter your GPA to see only awards you qualify for. "Any major" and national awards always show up.
+- **Student profile.** Enter your GPA, intended major and preferred region once, and the filters are set for you every time you visit. Sign out and back in; several students can share one browser.
 - **Scholarship details.** Open any card for the full description, award, deadline, minimum GPA and who it's for.
-- **Saved list.** Heart a scholarship to keep it. The count shows in the header and your list survives a page refresh.
+- **Saved list.** Heart a scholarship to keep it. The count shows in the header, and your list survives a refresh and signing out.
 - **Responsive.** Works on phones, with a collapsible menu below 800px.
 
 > [!NOTE]
@@ -68,17 +68,16 @@ Open [localhost:8000](http://localhost:8000).
 3. Back in the results, the filters are set from your profile. Change them to explore.
 4. Open a scholarship's details and save it.
 5. Open **Saved** in the header to see your list. It is still there after a refresh.
+6. Sign out from the profile dialog, then use **Sign in** in the header to get your list back.
 
 </details>
 
 ## Known issues
 
-The [Round 1 architecture review](docs/CURRENT_ARCHITECTURE.md#problems-we-noticed) found these. Step 2 of the roadmap fixes the first three in place.
+The bugs found in the [Round 1 architecture review](docs/CURRENT_ARCHITECTURE.md#problems-we-noticed) are fixed. What remains is part of the demo design and changes with the stack:
 
-- The profile's GPA filter is backwards: a student with a 3.7 GPA sees no results.
-- Signing out deletes the saved list, and "Sign in" only shows a message.
-- Filters set from your profile reset when the page reloads.
-- Passwords are stored as plain text in the browser. This goes away with Supabase Auth in step 5.
+- Accounts and saved lists live only in this browser, and passwords are stored there as plain text. Both go away with Supabase in step 5.
+- Scholarships are built into the code, so adding one means editing `app.js`. Also fixed in step 5.
 
 ## Roadmap
 
@@ -87,8 +86,8 @@ Each step is its own branch and pull request, merged before the next one starts.
 | | Step | Branch | Status |
 | --- | --- | --- | --- |
 | 0 | Current and target architecture docs | `docs/current-architecture`, `docs/target-architecture` | ✅ Done |
-| 1 | New README and `CLAUDE.md` | `docs/readme` | 🚧 In progress |
-| 2 | Fix the Round 1 bugs in the existing code | `fix/round-1-bugs` | Planned |
+| 1 | New README and `CLAUDE.md` | `docs/readme` | ✅ Done |
+| 2 | Fix the Round 1 bugs in the existing code | `fix/round-1-bugs` | 🚧 In progress |
 | 3 | Move to Vite, React, TypeScript, Tailwind, pnpm and Lucide | `chore/vite-react-ts` | Planned |
 | 4 | Deploy to Vercel | `chore/vercel-deploy` | Planned |
 | 5 | Move data and accounts to Supabase | `feat/supabase` | Planned |
