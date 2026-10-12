@@ -20,7 +20,7 @@ A student "qualifies" on GPA when `scholarship.min_gpa <= student.gpa`. Scholars
 
 ## Current state
 
-The roadmap is at **step 5 of 6**. Production: https://scholarspring-snowy.vercel.app (Vercel, deploys from `main`). The app is a Vite + React + TypeScript single page, styled with Tailwind CSS v4 and Lucide icons, with Supabase for accounts and data. It still looks like the original; the redesign is step 6.
+The six-step roadmap is **complete**. Production: https://scholarspring-snowy.vercel.app (Vercel, deploys from `main`). The app is a Vite + React + React Router + TypeScript single-page app, styled with Tailwind CSS v4 (light and dark themes) and Lucide icons, with Supabase for accounts and data.
 
 ### Commands
 
@@ -37,13 +37,19 @@ Before opening a PR, run `pnpm lint`, `pnpm typecheck`, `pnpm test` and `pnpm bu
 
 ### How the app fits together
 
-- `App.tsx` owns UI state: filters, which dialog is open, the toast, `busy` while a request runs. Filters are derived from the signed-in profile until the student changes one (`customFilters` is `null` until then).
-- Hooks load data through `src/lib/data.ts` and nothing else; only `data.ts` imports the Supabase client (`src/lib/supabase.ts`). Expected failures are `AuthError` (message shown to the student as is) or `DataError`; anything else gets a generic toast.
+- **Routes** (`App.tsx`, React Router): `/` home, `/scholarships` browse, `/scholarships/:id` detail, `/saved`, `/profile`, and a 404. `vercel.json` rewrites every non-asset path to `index.html`.
+- **App state** lives in `App.tsx` and reaches pages through `AppContext` (`useApp()`): auth, scholarships and load status, saved ids, `toggleSave`, `openAuth`, `toast`, `today` and `browseLink`. `Layout` holds the header, footer, toast and the sign-in / sign-up dialog.
+- **Browse state is the URL** (`?q=&major=&region=&gpa=&sort=amount&closed=1`), parsed and written by `src/lib/browse.ts`; updates use `replace` so typing doesn't fill history. Signed-in students' **Browse** link carries their profile filters (`browseLink`); after sign-up they land there.
+- **Matching:** `profileMatch()` checks GPA, major and region separately with the same rules as the filters; cards show "Matches your profile" when all three pass, and the detail page lists each criterion.
+- **Deadlines:** `deadlineStatus(deadline, today)` with `today` from `localToday()` (the student's calendar date). Open through the end of the deadline day; "soon" within 14 days. Closed scholarships are hidden on Browse unless `closed=1`.
+- **Saving while signed out** opens sign-in with a `pendingSaveId`; the save happens once the student is in, and they stay on the page they were on.
+- Hooks load data through `src/lib/data.ts` and nothing else; only `data.ts` imports the Supabase client (`src/lib/supabase.ts`). Expected failures are `AuthError` (message shown as is) or `DataError`; `errorMessage()` (`src/lib/errors.ts`) turns anything else into a generic toast.
 - `Profile` is `{ username, email, gpa, major, region }` and never includes a password. Sign-in is email + password; the username is chosen at sign-up and can't change. Updating a profile with a blank password keeps the current one.
-- Without `VITE_SUPABASE_URL` / `VITE_SUPABASE_ANON_KEY`, `supabase` is `null`, data calls reject with `DataError`, and the app shows `ConfigNotice`. Unit tests always run unconfigured (see `vite.config.ts`).
-- supabase-js keeps the session in `localStorage` itself. On load the app deletes the old `scholarspring-demo` key, which held the browser-only accounts with plain-text passwords.
-- Dialogs are native `<dialog>` elements opened with `showModal()` (`components/Modal.tsx`). The profile form remounts each time it opens (`formKey`) instead of resetting state in an effect.
-- Breakpoints match the original CSS: `max-md:` is 800px and below, `max-sm:` is 500px and below (see `src/index.css`).
+- Without `VITE_SUPABASE_URL` / `VITE_SUPABASE_ANON_KEY`, `supabase` is `null`, data calls reject with `DataError`, and the app shows `ConfigNotice`. Unit tests always run unconfigured (see `vite.config.ts`). Builds pick these up from the environment, so set them explicitly (even to empty) when a build must not use a real project.
+- **Theme:** `src/lib/theme.ts` + `useTheme()`; preference `system | light | dark` in `localStorage` (`scholarspring-theme`), applied as a `dark` class on `<html>`. A small script in `index.html` sets it before first paint, so there's no flash.
+- Dialogs are native `<dialog>` elements opened with `showModal()` (`components/Modal.tsx`). The auth form remounts each time it opens (`formKey`) instead of resetting state in an effect.
+- Breakpoints: `max-md:` is 800px and below, `max-sm:` is 500px and below (see `src/index.css`).
+- Build output is split into `supabase`, `react` and app chunks (`vite.config.ts`) so third-party code stays cached across deploys.
 
 ### Database
 
@@ -74,34 +80,41 @@ One branch and one PR per step, merged before the next step starts. Full plan: `
 | 3 | `chore/vite-react-ts` | Port the current UI as-is to Vite + React + TypeScript + Tailwind + pnpm + Lucide. Still `localStorage`, but only through `src/lib/data.ts`. Add unit tests for matching |
 | 4 | `chore/vercel-deploy` | Deploy to Vercel; add the live demo badge and link to the README |
 | 5 | `feat/supabase` | Supabase tables, RLS, seed data, Supabase Auth; switch `src/lib/data.ts` over |
-| 6 | `feat/ui-refresh` | New UI per the design language below |
+| 6 | `feat/ui-refresh` | New UI per the design language below: bold forest look, routes, dark mode, match and deadline cues, sorting |
 
-When a step merges, update the roadmap table and the `roadmap-step_N_of_6` badge in `README.md`, and the "Current state" section here.
+All six steps are done. New work follows the same pattern: one branch and PR per change, with README and this file updated in the same PR.
 
 ## Target architecture
 
 - **Frontend:** Vite, React, TypeScript (strict), Tailwind CSS, Lucide icons. pnpm is the only package manager; commit `pnpm-lock.yaml` and never add an npm or yarn lockfile. Lint with oxlint only.
 - **Backend:** Supabase only. The browser talks to Supabase directly; there is no custom server. Row Level Security on every table is what keeps data private, not the UI.
-- **Hosting:** Vercel, with preview deployments for every PR. `vercel.json` pins install (`pnpm install --frozen-lockfile`), build (`pnpm build`) and output (`dist`), caches hashed `/assets/*` for a year, and sets `nosniff` and `Referrer-Policy` headers. The app is a single page with hash links, so no SPA rewrite is needed; add one if client-side routes are introduced.
+- **Hosting:** Vercel, with preview deployments for every PR. `vercel.json` pins install (`pnpm install --frozen-lockfile`), build (`pnpm build`) and output (`dist`), rewrites every non-`/assets/` path to `index.html` for client-side routes, caches hashed `/assets/*` for a year, and sets `nosniff` and `Referrer-Policy` headers.
 
-Layout (since step 3):
+Layout:
 
 ```
 src/
-  App.tsx         page composition and UI state
-  components/     Header, Hero, SearchSection, ScholarshipCard, ScholarshipGrid, SavedSection,
-                  CtaSection, Footer, ProfileDialog, DetailDialog, Modal, Toast, Brand, button.ts
-  hooks/          useAuth, useScholarships, useSavedScholarships, useToast
+  App.tsx         routes and app state
+  pages/          HomePage, BrowsePage, ScholarshipPage, SavedPage, ProfilePage, NotFoundPage
+  components/     Layout, Header, Footer, ThemeToggle, ScholarshipCard (+ grid, skeletons), Chips, SaveButton,
+                  PageBand (+ PageBody, EmptyState), AuthDialog, ProfileFields, Modal, Toast, ConfigNotice,
+                  Brand, SparkleMark, button.ts
+  context/        AppContext (useApp)
+  hooks/          useAuth, useScholarships, useSavedScholarships, useTheme, useToast, useDocumentTitle
   lib/
     data.ts       the ONLY module that talks to Supabase
     supabase.ts   the Supabase client (null when the VITE_ variables are missing)
     database.types.ts  row types mirroring supabase/migrations
-    matching.ts   pure filter/match functions, unit tested
+    matching.ts   filters and profileMatch, unit tested
+    browse.ts     Browse URL state, sorting, hiding closed, unit tested
+    deadlines.ts  deadline status and localToday, unit tested
     format.ts     money and date formatting (UTC)
+    theme.ts      theme preference, unit tested
+    errors.ts     errorMessage for toasts
     fixtures.ts   the seeded scholarships, for tests
     options.ts    major and region lists
-  index.css       Tailwind theme tokens and base styles
-  types.ts        Scholarship, Profile, AuthMode
+  index.css       light/dark colour tokens, Tailwind theme and base styles
+  types.ts        Scholarship, Profile, ProfileDetails, AuthMode
 ```
 
 Data model (since step 5): see [Database](#database) above.
@@ -118,31 +131,35 @@ Data model (since step 5): see [Database](#database) above.
 
 ## Design language
 
-ScholarSpring should look warm, editorial and its own. **No purple gradients, glassmorphism or generic SaaS templates.**
+**Bold forest.** Deep forest-green bands (header, every page's opening band, feature blocks), cream type on them,
+coral as the only accent, and oversized Playfair numbers for award amounts. Warm and editorial, never generic:
+**no purple gradients, glassmorphism or SaaS templates.**
 
-The tokens below are Tailwind theme colours in `src/index.css` (`bg-ink`, `text-coral`, `border-line`, …). Use them instead of new hex values.
+Colours are semantic tokens defined twice in `src/index.css` (`:root` and `:root.dark`) and exposed to Tailwind
+(`bg-page`, `bg-band`, `text-muted`, `bg-accent text-accent-fg`, …). Use the tokens, never raw hex values, so both
+themes keep working. Every text/background pair below meets WCAG AA in both themes.
 
-| Token | Value | Use |
-|---|---|---|
-| ink | `#193631` | Text, dark surfaces |
-| muted | `#6a7774` | Secondary text |
-| cream | `#f7f5ef` | Page background |
-| paper | `#fffdf8` | Cards, header |
-| mint | `#d8ebe1` | Soft fills, badges |
-| sage | `#8fb9a5` | Accents |
-| coral | `#ec795f` | Primary actions, the ✦ mark |
-| yellow | `#f6d77b` | Highlights |
-| line | `#dfe6df` | Borders |
+| Token | Light | Dark | Use |
+|---|---|---|---|
+| `page` | `#f7f5ef` | `#0d1c19` | Page background |
+| `card` | `#fffdf8` | `#142a25` | Cards, inputs, dialogs |
+| `band` / `band-fg` / `band-muted` | `#193631` / `#f7f5ef` / `#b9cbc4` | `#0a1714` / `#f3efe4` / `#9fb3ac` | Forest bands and the text on them |
+| `fg` / `muted` | `#193631` / `#5c6b67` | `#f3efe4` / `#a3b3ae` | Text |
+| `line` | `#dfe6df` | `#24403a` | Borders |
+| `accent` / `accent-fg` | `#ec795f` / `#193631` | `#f0876e` / `#10211d` | Coral fills (buttons, today chip) and the dark text on them |
+| `accent-text` | `#b5472f` | `#f4a08b` | Coral used as small text on page or card |
+| `mint` / `mint-fg` | `#d8ebe1` / `#193631` | `#1f4038` / `#f3efe4` | "Matches your profile", soft highlights |
+| `yellow` / `yellow-fg` | `#f6d77b` / `#193631` | `#e9c968` / `#10211d` | "Closes soon" |
 
-- **Type:** Playfair Display (700) for headlines, DM Sans for everything else.
-- **Icons:** Lucide from step 3 on; no emoji as UI icons.
-- **Accessibility:** keyboard reachable, visible focus, labelled icon buttons, AA contrast, works down to 375px wide.
-- **Dark mode** arrives with the UI refresh. Design it on purpose; don't just invert the colours.
+- **Never** white text on coral, or plain `accent` as small text on cream: both fail AA. Use `accent-fg` on coral and `accent-text` for coral text.
+- **Type:** Playfair Display (700, 800 for big numbers) for headings and amounts, DM Sans for everything else. Use `tabular-nums` for money.
+- **Icons:** Lucide; the ✦ brand mark is `SparkleMark` (matches the logo and favicon). No emoji as UI icons.
+- **Accessibility:** skip link, keyboard reachable, visible focus (`:focus-visible` coral outline), labelled icon buttons, AA contrast, `prefers-reduced-motion` respected, works down to 375px wide.
 
 ## Assets
 
 - `.github/assets/logo-light.svg` and `logo-dark.svg`: the ✦ mark plus "ScholarSpring" in Playfair Display 700, converted to outlines so they render the same everywhere.
-- `.github/assets/screenshot.png`: the README hero image. Retake it when the UI changes visibly.
+- `.github/assets/screenshot-light.png` and `screenshot-dark.png`: the README hero image in each theme. Retake them when the UI changes visibly.
 
 ## Decisions
 
@@ -157,3 +174,9 @@ The tokens below are Tailwind theme colours in `src/index.css` (`bg-ink`, `text-
 | Scholarship ids are slugs, not UUIDs | Readable, stable ids that match the original data |
 | Amount as whole dollars, deadline as a `date` | So they can be sorted and filtered; the UI formats them (`src/lib/format.ts`, in UTC so days never shift) |
 | Keep the existing palette and typefaces | The original identity is already distinctive; refine it rather than replace it |
+| "Bold forest" direction for step 6 | Chosen over a quieter editorial look and a ticket/field-guide look: high contrast, memorable, still the same palette |
+| Coral fills carry dark text, not white | White on coral is 2.8:1 and fails AA; ink on coral passes in both themes |
+| Real routes, but sign-in stays a dialog | Pages for things worth linking to; signing in shouldn't lose your place |
+| Browse filters in the URL; profile filters via the Browse link | Shareable and reload-proof searches, while signed-in students still start from their profile |
+| Hide closed scholarships by default | Students act on open ones; closed ones are one click away |
+| Migration moving the demo deadlines into 2027 | The seeded 2026 deadlines had passed, which would have left Browse empty |

@@ -18,13 +18,13 @@ export function Header() {
 
   return (
     <header className="sticky top-0 z-30 border-b border-band-line bg-band text-band-fg">
-      <div className="shell flex h-[72px] items-center justify-between gap-6">
+      <div className="shell flex h-[72px] items-center gap-6">
         <Link to="/" onClick={close} aria-label="ScholarSpring home">
           <Brand />
         </Link>
         <nav
           aria-label="Main"
-          className={`flex items-center gap-7 text-[.93rem] ${
+          className={`ml-auto flex items-center gap-7 text-[.93rem] ${
             menuOpen
               ? 'max-md:absolute max-md:inset-x-0 max-md:top-[72px] max-md:flex-col max-md:items-start max-md:gap-3 max-md:border-b max-md:border-band-line max-md:bg-band max-md:px-7 max-md:py-5'
               : 'max-md:hidden'
@@ -63,7 +63,7 @@ export function Header() {
             </button>
           )}
         </nav>
-        <div className="flex items-center gap-1 md:-mr-2">
+        <div className="flex items-center gap-1 max-md:ml-auto md:-mr-2">
           <ThemeToggle />
           <button
             type="button"

@@ -44,7 +44,7 @@ export function BrowsePage() {
         <form
           role="search"
           onSubmit={(event) => event.preventDefault()}
-          className="grid grid-cols-[2fr_1fr_1fr_.8fr_1fr] gap-3 rounded-3xl border border-line bg-card p-4 shadow-soft max-md:grid-cols-2 max-sm:grid-cols-1"
+          className="grid grid-cols-[1.5fr_1.25fr_1fr_.7fr_1.05fr] gap-3 rounded-3xl border border-line bg-card p-4 shadow-soft max-md:grid-cols-2 max-sm:grid-cols-1"
         >
           <label className="relative flex items-center max-md:col-span-full">
             <Search aria-hidden className="absolute left-4 size-[18px] text-muted" />
