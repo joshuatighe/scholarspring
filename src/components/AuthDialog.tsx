@@ -37,7 +37,7 @@ export function AuthDialog({ open, mode, formKey, busy, onClose, onSwitchMode, o
           {signin ? 'Welcome back' : 'Create your profile'}
         </h2>
         <p className="mt-2 text-[.92rem] text-muted">
-          {signin ? 'Sign in to see your saved scholarships.' : 'Tell us a little about yourself and we’ll show what you qualify for.'}
+          {signin ? 'Sign in to see your saved scholarships.' : 'Tell us about your grades and college plans, and we’ll show what you qualify for.'}
         </p>
       </div>
       <AuthForm key={`${formKey}-${mode}`} signin={signin} busy={busy} onSubmit={onSubmit} />

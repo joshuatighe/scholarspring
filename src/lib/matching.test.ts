@@ -13,7 +13,7 @@ describe('matchesScholarship', () => {
   it('searches name, provider and category, ignoring case and spaces', () => {
     expect(ids({ query: '  green ' })).toEqual(['green-future'])
     expect(ids({ query: 'northstar' })).toEqual(['first-gen'])
-    expect(ids({ query: 'LEADERSHIP' })).toEqual(['women-build'])
+    expect(ids({ query: 'LEADERSHIP' })).toEqual(['future-founders'])
   })
 
   // Round 1 bug: the filter kept scholarships whose minimum GPA was ABOVE the student's.
@@ -30,7 +30,7 @@ describe('matchesScholarship', () => {
   })
 
   it('lets "Any major" scholarships match every major', () => {
-    expect(ids({ major: 'Education' }).toSorted()).toEqual(['creative-voice', 'first-gen', 'future-teachers', 'green-future', 'women-build'])
+    expect(ids({ major: 'Education' }).toSorted()).toEqual(['creative-voice', 'first-gen', 'future-founders', 'future-teachers', 'green-future'])
   })
 
   it('lets "National" scholarships match every region', () => {
@@ -74,7 +74,7 @@ describe('profileMatch', () => {
   })
 
   it('reports each criterion that does not fit', () => {
-    expect(profileMatch(byId('women-build'), maya)).toEqual({ gpa: false, major: true, region: true, all: false })
+    expect(profileMatch(byId('future-founders'), maya)).toEqual({ gpa: false, major: true, region: true, all: false })
     expect(profileMatch(byId('future-teachers'), maya)).toEqual({ gpa: true, major: false, region: true, all: false })
   })
 

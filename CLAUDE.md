@@ -4,7 +4,14 @@ Guide for anyone (human or AI assistant) working on ScholarSpring. Read this bef
 
 ## What ScholarSpring is
 
-A scholarship finder for students. It was first built in Vibe Coding 1 as a frontend-only demo. It is now being rebuilt step by step for an AI-aided software engineering course.
+A scholarship finder for **high-school students applying to college** (mostly juniors and seniors). It was first built in Vibe Coding 1 as a frontend-only demo, then rebuilt step by step for an AI-aided software engineering course.
+
+### Audience and voice
+
+- Write for a high-school student planning for college: plain words, second person ("you"), no jargon.
+- Scholarships are for students starting college (e.g. "graduating high-school seniors"), not undergraduates, graduate students or professionals. Avoid "fellowship", "enrolled at an accredited institution" and similar college-level framing.
+- The profile asks for **high-school** GPA, the major they're **planning**, and where they want to study ("Anywhere in the US" is shown for the `National` region).
+- The tab title is `ScholarSpring · College scholarships for high-school students`; page titles are `<Page> · ScholarSpring` (`useDocumentTitle`).
 
 ### Requirements
 
@@ -180,3 +187,4 @@ themes keep working. Every text/background pair below meets WCAG AA in both them
 | Browse filters in the URL; profile filters via the Browse link | Shareable and reload-proof searches, while signed-in students still start from their profile |
 | Hide closed scholarships by default | Students act on open ones; closed ones are one click away |
 | Migration moving the demo deadlines into 2027 | The seeded 2026 deadlines had passed, which would have left Browse empty |
+| Demo scholarships reworded for high-school seniors | The original copy mixed undergraduate and professional awards; "Women Who Build" became "Future Founders Award" (`future-founders`), with saved rows moved over |

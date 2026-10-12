@@ -9,9 +9,9 @@ import { isOpen } from '../lib/deadlines'
 import { formatAmount } from '../lib/format'
 
 const steps = [
-  ['Build your profile', 'Your GPA, intended major and where you want to study. It takes a minute.'],
-  ['See what fits', 'Every scholarship is checked against your profile, and the ones you qualify for are marked.'],
-  ['Keep a shortlist', 'Save the ones worth applying to. Your list follows you to any device.'],
+  ['Build your profile', 'Your high-school GPA, the major you’re planning and where you want to study. It takes a minute.'],
+  ['See what fits', 'Every scholarship is checked against your profile, so you know which ones you qualify for before you start an essay.'],
+  ['Keep a shortlist', 'Save the ones worth applying to and keep an eye on their deadlines. Your list follows you from your phone to the school library.'],
 ] as const
 
 export function HomePage() {
@@ -30,11 +30,11 @@ export function HomePage() {
         </svg>
         <div className="shell relative grid grid-cols-[1.25fr_1fr] items-end gap-12 pt-20 pb-24 max-md:grid-cols-1 max-md:gap-10 max-sm:pt-14 max-sm:pb-16">
           <div>
-            <p className="eyebrow text-accent">Scholarships for students</p>
-            <h1 className="mt-5 text-[clamp(2.9rem,6.4vw,5.4rem)] leading-[0.98]">Funding for the future you’re building.</h1>
+            <p className="eyebrow text-accent">For high-school students heading to college</p>
+            <h1 className="mt-5 text-[clamp(2.7rem,5.6vw,4.6rem)] leading-[0.98]">Find the scholarships that get you to college.</h1>
             <p className="mt-6 max-w-[520px] text-[1.12rem] leading-relaxed text-band-muted">
-              Search scholarships matched to your goals, see which ones you qualify for, and keep a shortlist that follows
-              you everywhere.
+              Tell us your GPA, the major you’re planning and where you want to study. We’ll show which scholarships you
+              qualify for and keep your shortlist in one place.
             </p>
             <div className="mt-9 flex flex-wrap items-center gap-3 max-sm:flex-col max-sm:items-stretch">
               <Link to={browseLink} className={buttonClass('primary')}>
@@ -97,9 +97,9 @@ export function HomePage() {
         <section className="shell py-20 max-sm:py-14">
           <div className="flex items-center justify-between gap-8 rounded-[2rem] bg-band px-12 py-14 text-band-fg max-md:flex-col max-md:items-start max-sm:px-7 max-sm:py-10">
             <div>
-              <p className="eyebrow text-accent">A little help goes a long way</p>
-              <h2 className="mt-3 text-[clamp(2rem,4vw,2.8rem)] leading-tight">Ready to make a plan?</h2>
-              <p className="mt-3 max-w-[480px] text-band-muted">Build your profile once and see what you qualify for.</p>
+              <p className="eyebrow text-accent">Senior year moves fast</p>
+              <h2 className="mt-3 text-[clamp(2rem,4vw,2.8rem)] leading-tight">Ready to start applying?</h2>
+              <p className="mt-3 max-w-[480px] text-band-muted">Build your profile once and see every scholarship you qualify for.</p>
             </div>
             <button type="button" onClick={() => openAuth('profile')} className={buttonClass('primary')}>
               Build my profile <ArrowRight aria-hidden className="size-4" />

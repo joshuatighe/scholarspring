@@ -25,12 +25,12 @@ describe('parseBrowse / browseParams', () => {
 describe('sortScholarships', () => {
   it('sorts by deadline, soonest first', () => {
     expect(ids(sortScholarships(SCHOLARSHIPS.toReversed(), 'deadline'))).toEqual([
-      'stem-forward', 'green-future', 'first-gen', 'future-teachers', 'creative-voice', 'women-build',
+      'stem-forward', 'green-future', 'first-gen', 'future-teachers', 'creative-voice', 'future-founders',
     ])
   })
 
   it('sorts by amount, highest first', () => {
-    expect(ids(sortScholarships(SCHOLARSHIPS, 'amount')).slice(0, 3)).toEqual(['women-build', 'stem-forward', 'future-teachers'])
+    expect(ids(sortScholarships(SCHOLARSHIPS, 'amount')).slice(0, 3)).toEqual(['future-founders', 'stem-forward', 'future-teachers'])
   })
 
   it('does not change the input', () => {
@@ -44,13 +44,13 @@ describe('browse', () => {
   it('hides closed scholarships unless asked, and counts them', () => {
     const today = '2026-06-10' // stem, green and first-gen have closed
     expect(browse(SCHOLARSHIPS, DEFAULT_BROWSE, today)).toMatchObject({ hiddenClosed: 3 })
-    expect(ids(browse(SCHOLARSHIPS, DEFAULT_BROWSE, today).results)).toEqual(['future-teachers', 'creative-voice', 'women-build'])
+    expect(ids(browse(SCHOLARSHIPS, DEFAULT_BROWSE, today).results)).toEqual(['future-teachers', 'creative-voice', 'future-founders'])
     expect(browse(SCHOLARSHIPS, { ...DEFAULT_BROWSE, showClosed: true }, today)).toMatchObject({ hiddenClosed: 0 })
   })
 
   it('applies filters before hiding closed ones', () => {
     const result = browse(SCHOLARSHIPS, { ...DEFAULT_BROWSE, major: 'Education' }, '2026-06-10')
-    expect(ids(result.results)).toEqual(['future-teachers', 'creative-voice', 'women-build'])
+    expect(ids(result.results)).toEqual(['future-teachers', 'creative-voice', 'future-founders'])
     expect(result.hiddenClosed).toBe(2)
   })
 })
