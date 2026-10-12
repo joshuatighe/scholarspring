@@ -13,6 +13,7 @@ A scholarship finder for students. Search and filter awards, build a profile onc
 and keep a shortlist of the scholarships worth applying to.
 
 <p>
+  <a href="https://scholarspring-snowy.vercel.app"><picture><source media="(prefers-color-scheme: dark)" srcset="https://img.shields.io/badge/live_demo-scholarspring--snowy.vercel.app-ec795f?style=flat-square&logo=vercel&logoColor=white&labelColor=3b5a53"><img alt="Live demo" src="https://img.shields.io/badge/live_demo-scholarspring--snowy.vercel.app-ec795f?style=flat-square&logo=vercel&logoColor=white&labelColor=193631"></picture></a>&nbsp;
   <a href="#roadmap"><picture><source media="(prefers-color-scheme: dark)" srcset="https://img.shields.io/badge/roadmap-step_4_of_6-24413b?style=flat-square&labelColor=3b5a53"><img alt="Roadmap: step 4 of 6" src="https://img.shields.io/badge/roadmap-step_4_of_6-ec795f?style=flat-square&labelColor=193631"></picture></a>&nbsp;
   <a href="https://github.com/joshuatighe/scholarspring/deployments"><picture><source media="(prefers-color-scheme: dark)" srcset="https://img.shields.io/github/deployments/joshuatighe/scholarspring/Production?style=flat-square&logo=vercel&label=production&logoColor=white&labelColor=3b5a53"><img alt="Production deployment" src="https://img.shields.io/github/deployments/joshuatighe/scholarspring/Production?style=flat-square&logo=vercel&label=production&logoColor=white&labelColor=193631"></picture></a>&nbsp;
   <a href="https://github.com/joshuatighe/scholarspring/actions/workflows/ci.yml"><picture><source media="(prefers-color-scheme: dark)" srcset="https://img.shields.io/github/actions/workflow/status/joshuatighe/scholarspring/ci.yml?branch=main&style=flat-square&logo=githubactions&label=ci&logoColor=white&labelColor=3b5a53"><img alt="CI" src="https://img.shields.io/github/actions/workflow/status/joshuatighe/scholarspring/ci.yml?branch=main&style=flat-square&logo=githubactions&label=ci&logoColor=white&labelColor=193631"></picture></a>&nbsp;
@@ -31,7 +32,7 @@ and keep a shortlist of the scholarships worth applying to.
   <a href="https://pnpm.io/motivation"><picture><source media="(prefers-color-scheme: dark)" srcset="https://img.shields.io/badge/pnpm-10-24413b?style=flat-square&logo=pnpm&logoColor=white&labelColor=3b5a53"><img alt="pnpm 10" src="https://img.shields.io/badge/pnpm-10-d8ebe1?style=flat-square&logo=pnpm&logoColor=white&labelColor=193631"></picture></a>
 </p>
 
-<sub>[Features](#features) · [Getting started](#getting-started) · [Scripts](#scripts) · [Deploy](#deploy) · [Roadmap](#roadmap) · [Architecture](#architecture) · [Stack](#stack)</sub>
+<sub>[Live demo](https://scholarspring-snowy.vercel.app) · [Features](#features) · [Getting started](#getting-started) · [Scripts](#scripts) · [Deploy](#deploy) · [Roadmap](#roadmap) · [Architecture](#architecture) · [Stack](#stack)</sub>
 
 <br><br>
 
@@ -69,6 +70,7 @@ pnpm dev
 ```
 
 Open [localhost:5173](http://localhost:5173). There are no environment variables or accounts to set up yet.
+Or skip the setup and try the [live demo](https://scholarspring-snowy.vercel.app).
 
 <details>
 <summary><strong>Try it out</strong></summary>
@@ -109,6 +111,8 @@ Every pull request and push to `main` runs lint, typecheck, tests and build in [
 1. Import the repo into [Vercel](https://vercel.com/new). The framework preset is **Vite**, and pnpm is detected from
    `pnpm-lock.yaml`. `vercel.json` pins the install, build and output settings.
 2. Deploy. There are no environment variables yet; Supabase keys arrive in step 5.
+
+Production: **[scholarspring-snowy.vercel.app](https://scholarspring-snowy.vercel.app)**
 
 Every pull request gets its own preview deployment, and merges to `main` go to production.
 

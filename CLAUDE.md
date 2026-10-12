@@ -20,7 +20,7 @@ A student "qualifies" on GPA when `scholarship.min_gpa <= student.gpa`. Scholars
 
 ## Current state
 
-The roadmap is at **step 4 of 6**. The app is a Vite + React + TypeScript single page, styled with Tailwind CSS v4 and Lucide icons. It looks and behaves like the original vanilla version.
+The roadmap is at **step 4 of 6**. Production: https://scholarspring-snowy.vercel.app (Vercel, deploys from `main`). The app is a Vite + React + TypeScript single page, styled with Tailwind CSS v4 and Lucide icons. It looks and behaves like the original vanilla version.
 
 ### Commands
 
