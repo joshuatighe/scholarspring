@@ -188,3 +188,4 @@ themes keep working. Every text/background pair below meets WCAG AA in both them
 | Hide closed scholarships by default | Students act on open ones; closed ones are one click away |
 | Migration moving the demo deadlines into 2027 | The seeded 2026 deadlines had passed, which would have left Browse empty |
 | Demo scholarships reworded for high-school seniors | The original copy mixed undergraduate and professional awards; "Women Who Build" became "Future Founders Award" (`future-founders`), with saved rows moved over |
+| Seven more demo scholarships, incl. "Women Who Build Scholarship" (`women-who-build`) | Covers a women founders award for high schoolers, high-GPA merit, business and undecided majors, and the South, Northeast and Midwest. New id because the wording migration deletes `women-build` |
