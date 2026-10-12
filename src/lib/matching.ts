@@ -31,3 +31,20 @@ export function filtersFromProfile(profile: Profile): Omit<Filters, 'query'> {
     gpa: String(profile.gpa),
   }
 }
+
+export interface ProfileMatch {
+  gpa: boolean
+  major: boolean
+  region: boolean
+  /** True when all three match: the scholarship shows up in the student's profile-filtered results. */
+  all: boolean
+}
+
+/** How a scholarship lines up with a profile, criterion by criterion (same rules as the profile filters). */
+export function profileMatch(s: Scholarship, profile: Profile): ProfileMatch {
+  const filters = { ...EMPTY_FILTERS, ...filtersFromProfile(profile) }
+  const gpa = matchesScholarship(s, { ...EMPTY_FILTERS, gpa: filters.gpa })
+  const major = matchesScholarship(s, { ...EMPTY_FILTERS, major: filters.major })
+  const region = matchesScholarship(s, { ...EMPTY_FILTERS, region: filters.region })
+  return { gpa, major, region, all: gpa && major && region }
+}

@@ -2,8 +2,8 @@ export function Toast({ message, visible }: { message: string; visible: boolean 
   return (
     <div
       role="status"
-      className={`pointer-events-none fixed top-[90px] right-[25px] z-20 rounded-[5px] bg-ink px-[18px] py-[13px] text-[.85rem] text-white transition-all duration-[250ms] ${
-        visible ? 'translate-y-0 opacity-100' : '-translate-y-[15px] opacity-0'
+      className={`pointer-events-none fixed bottom-6 left-1/2 z-50 max-w-[calc(100%-32px)] -translate-x-1/2 rounded-full border border-band-line bg-band px-5 py-3 text-[.9rem] font-medium text-band-fg shadow-soft transition-all duration-300 ${
+        visible ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'
       }`}
     >
       {message}

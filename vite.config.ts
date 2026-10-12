@@ -5,6 +5,19 @@ import { defineConfig } from 'vite'
 
 export default defineConfig({
   plugins: [react(), tailwindcss()],
+  build: {
+    rolldownOptions: {
+      output: {
+        // Third-party code in its own chunks, so it stays cached across app deploys.
+        codeSplitting: {
+          groups: [
+            { name: 'supabase', test: /node_modules[\\/]@supabase[\\/]/ },
+            { name: 'react', test: /node_modules[\\/](react|react-dom|react-router|scheduler|cookie|set-cookie-parser)[\\/]/ },
+          ],
+        },
+      },
+    },
+  },
   test: {
     environment: 'node',
     // Unit tests never talk to a real Supabase project, even when .env.local is present.

@@ -1,46 +1,51 @@
-import { ArrowRight, Heart } from 'lucide-react'
-import { formatAmount, formatShortDeadline } from '../lib/format'
+import { Link } from 'react-router'
+import { useApp } from '../context/AppContext'
+import { formatAmount } from '../lib/format'
+import { profileMatch } from '../lib/matching'
 import type { Scholarship } from '../types'
+import { DeadlineChip, MatchChip } from './Chips'
+import { SaveButton } from './SaveButton'
 
-interface Props {
-  scholarship: Scholarship
-  saved: boolean
-  onToggleSave: (id: string) => void
-  onShowDetail: (id: string) => void
+export function ScholarshipCard({ scholarship: s }: { scholarship: Scholarship }) {
+  const { auth, today } = useApp()
+  const matches = auth.user ? profileMatch(s, auth.user).all : false
+  return (
+    <article className="group relative flex min-h-[290px] flex-col rounded-3xl border border-line bg-card p-6 transition duration-200 hover:-translate-y-1 hover:border-fg/30 hover:shadow-soft">
+      <div className="flex items-start justify-between gap-4">
+        <p className="eyebrow pt-1 text-accent-text">{s.category}</p>
+        <SaveButton scholarship={s} className="relative z-10" />
+      </div>
+      <p className="mt-3 font-display text-[2.7rem] leading-none font-bold tracking-[-0.03em] tabular-nums">{formatAmount(s.amount)}</p>
+      <h3 className="mt-4 text-[1.3rem] leading-tight">
+        <Link to={`/scholarships/${s.id}`} className="after:absolute after:inset-0 after:rounded-3xl focus-visible:outline-none focus-visible:after:outline-2 focus-visible:after:outline-offset-2 focus-visible:after:outline-accent">
+          {s.name}
+        </Link>
+      </h3>
+      <p className="mt-1.5 text-[.88rem] text-muted">{s.provider}</p>
+      <div className="mt-auto flex flex-wrap gap-2 pt-6">
+        <DeadlineChip deadline={s.deadline} today={today} />
+        {matches && <MatchChip />}
+      </div>
+    </article>
+  )
 }
 
-export function ScholarshipCard({ scholarship: s, saved, onToggleSave, onShowDetail }: Props) {
+export function ScholarshipGrid({ scholarships }: { scholarships: Scholarship[] }) {
   return (
-    <article className="relative flex min-h-[270px] flex-col rounded-lg border border-line bg-paper p-[23px] transition-all duration-200 hover:-translate-y-1 hover:shadow-soft">
-      <div className="flex items-start justify-between">
-        <span className="text-[.65rem] font-bold tracking-[.11em] text-coral uppercase">{s.category}</span>
-        <button
-          type="button"
-          onClick={() => onToggleSave(s.id)}
-          aria-label={`${saved ? 'Remove' : 'Save'} ${s.name}`}
-          aria-pressed={saved}
-          className={`grid size-[33px] place-items-center rounded-full ${saved ? 'bg-coral text-white' : 'bg-cream text-ink'}`}
-        >
-          <Heart aria-hidden className={`size-[17px] ${saved ? 'fill-current' : ''}`} />
-        </button>
-      </div>
-      <h3 className="mt-[22px] mb-2 font-display text-[1.45rem] leading-[1.15]">{s.name}</h3>
-      <p className="text-[.82rem] text-muted">{s.provider}</p>
-      <div className="mt-auto flex gap-3.5 pt-5 text-[.76rem] text-[#62716d]">
-        <div>
-          AWARD<strong className="mt-1 block text-[.9rem] text-ink">{formatAmount(s.amount)}</strong>
-        </div>
-        <div>
-          DEADLINE<strong className="mt-1 block text-[.9rem] text-ink">{formatShortDeadline(s.deadline)}</strong>
-        </div>
-      </div>
-      <button
-        type="button"
-        onClick={() => onShowDetail(s.id)}
-        className="flex items-center gap-1 pt-[18px] text-left text-[.8rem] font-bold text-coral"
-      >
-        View scholarship details <ArrowRight aria-hidden className="size-3.5" />
-      </button>
-    </article>
+    <div className="grid grid-cols-3 gap-5 max-md:grid-cols-2 max-sm:grid-cols-1">
+      {scholarships.map((s) => (
+        <ScholarshipCard key={s.id} scholarship={s} />
+      ))}
+    </div>
+  )
+}
+
+export function CardSkeletons({ count = 3 }: { count?: number }) {
+  return (
+    <div aria-busy aria-label="Loading scholarships" className="grid grid-cols-3 gap-5 max-md:grid-cols-2 max-sm:grid-cols-1">
+      {Array.from({ length: count }, (_, n) => (
+        <div key={n} className="min-h-[290px] animate-pulse rounded-3xl border border-line bg-card" />
+      ))}
+    </div>
   )
 }

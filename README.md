@@ -14,8 +14,8 @@ and keep a shortlist of the scholarships worth applying to.
 
 <p>
   <a href="https://scholarspring-snowy.vercel.app"><picture><source media="(prefers-color-scheme: dark)" srcset="https://img.shields.io/badge/live_demo-scholarspring--snowy.vercel.app-ec795f?style=flat-square&logo=vercel&logoColor=white&labelColor=3b5a53"><img alt="Live demo" src="https://img.shields.io/badge/live_demo-scholarspring--snowy.vercel.app-ec795f?style=flat-square&logo=vercel&logoColor=white&labelColor=193631"></picture></a>&nbsp;
-  <a href="#roadmap"><picture><source media="(prefers-color-scheme: dark)" srcset="https://img.shields.io/badge/roadmap-step_5_of_6-24413b?style=flat-square&labelColor=3b5a53"><img alt="Roadmap: step 5 of 6" src="https://img.shields.io/badge/roadmap-step_5_of_6-ec795f?style=flat-square&labelColor=193631"></picture></a>&nbsp;
-  <a href="https://github.com/joshuatighe/scholarspring/deployments"><picture><source media="(prefers-color-scheme: dark)" srcset="https://img.shields.io/github/deployments/joshuatighe/scholarspring/Production?style=flat-square&logo=vercel&label=production&logoColor=white&labelColor=3b5a53"><img alt="Production deployment" src="https://img.shields.io/github/deployments/joshuatighe/scholarspring/Production?style=flat-square&logo=vercel&label=production&logoColor=white&labelColor=193631"></picture></a>&nbsp;
+  <a href="#roadmap"><picture><source media="(prefers-color-scheme: dark)" srcset="https://img.shields.io/badge/roadmap-complete-24413b?style=flat-square&labelColor=3b5a53"><img alt="Roadmap complete" src="https://img.shields.io/badge/roadmap-complete-ec795f?style=flat-square&labelColor=193631"></picture></a>&nbsp;
+  <a href="https://scholarspring-snowy.vercel.app"><picture><source media="(prefers-color-scheme: dark)" srcset="https://img.shields.io/badge/hosted_on-Vercel-24413b?style=flat-square&logo=vercel&logoColor=white&labelColor=3b5a53"><img alt="Hosted on Vercel" src="https://img.shields.io/badge/hosted_on-Vercel-d8ebe1?style=flat-square&logo=vercel&logoColor=white&labelColor=193631"></picture></a>&nbsp;
   <a href="https://github.com/joshuatighe/scholarspring/actions/workflows/ci.yml"><picture><source media="(prefers-color-scheme: dark)" srcset="https://img.shields.io/github/actions/workflow/status/joshuatighe/scholarspring/ci.yml?branch=main&style=flat-square&logo=githubactions&label=ci&logoColor=white&labelColor=3b5a53"><img alt="CI" src="https://img.shields.io/github/actions/workflow/status/joshuatighe/scholarspring/ci.yml?branch=main&style=flat-square&logo=githubactions&label=ci&logoColor=white&labelColor=193631"></picture></a>&nbsp;
   <a href="https://github.com/joshuatighe/scholarspring/commits/main"><picture><source media="(prefers-color-scheme: dark)" srcset="https://img.shields.io/github/last-commit/joshuatighe/scholarspring/main?style=flat-square&logo=github&label=last%20commit&color=24413b&logoColor=white&labelColor=3b5a53"><img alt="Last commit" src="https://img.shields.io/github/last-commit/joshuatighe/scholarspring/main?style=flat-square&logo=github&label=last%20commit&color=d8ebe1&logoColor=white&labelColor=193631"></picture></a>&nbsp;
   <a href="https://github.com/joshuatighe/scholarspring/pulls?q=is%3Apr+is%3Amerged"><picture><source media="(prefers-color-scheme: dark)" srcset="https://img.shields.io/github/issues-pr-closed/joshuatighe/scholarspring?style=flat-square&logo=github&label=pull%20requests&color=24413b&logoColor=white&labelColor=3b5a53"><img alt="Pull requests" src="https://img.shields.io/github/issues-pr-closed/joshuatighe/scholarspring?style=flat-square&logo=github&label=pull%20requests&color=d8ebe1&logoColor=white&labelColor=193631"></picture></a>
@@ -23,6 +23,7 @@ and keep a shortlist of the scholarships worth applying to.
 
 <p>
   <a href="https://react.dev"><picture><source media="(prefers-color-scheme: dark)" srcset="https://img.shields.io/badge/React-19-24413b?style=flat-square&logo=react&logoColor=white&labelColor=3b5a53"><img alt="React 19" src="https://img.shields.io/badge/React-19-d8ebe1?style=flat-square&logo=react&logoColor=white&labelColor=193631"></picture></a>&nbsp;
+  <a href="https://reactrouter.com"><picture><source media="(prefers-color-scheme: dark)" srcset="https://img.shields.io/badge/React_Router-8-24413b?style=flat-square&logo=reactrouter&logoColor=white&labelColor=3b5a53"><img alt="React Router 8" src="https://img.shields.io/badge/React_Router-8-d8ebe1?style=flat-square&logo=reactrouter&logoColor=white&labelColor=193631"></picture></a>&nbsp;
   <a href="https://www.typescriptlang.org/docs/"><picture><source media="(prefers-color-scheme: dark)" srcset="https://img.shields.io/badge/TypeScript-7-24413b?style=flat-square&logo=typescript&logoColor=white&labelColor=3b5a53"><img alt="TypeScript 7" src="https://img.shields.io/badge/TypeScript-7-d8ebe1?style=flat-square&logo=typescript&logoColor=white&labelColor=193631"></picture></a>&nbsp;
   <a href="https://vite.dev/guide/"><picture><source media="(prefers-color-scheme: dark)" srcset="https://img.shields.io/badge/Vite-8-24413b?style=flat-square&logo=vite&logoColor=white&labelColor=3b5a53"><img alt="Vite 8" src="https://img.shields.io/badge/Vite-8-d8ebe1?style=flat-square&logo=vite&logoColor=white&labelColor=193631"></picture></a>&nbsp;
   <a href="https://tailwindcss.com/docs"><picture><source media="(prefers-color-scheme: dark)" srcset="https://img.shields.io/badge/Tailwind_CSS-4-24413b?style=flat-square&logo=tailwindcss&logoColor=white&labelColor=3b5a53"><img alt="Tailwind CSS 4" src="https://img.shields.io/badge/Tailwind_CSS-4-d8ebe1?style=flat-square&logo=tailwindcss&logoColor=white&labelColor=193631"></picture></a>&nbsp;
@@ -37,7 +38,10 @@ and keep a shortlist of the scholarships worth applying to.
 
 <br><br>
 
-<img src=".github/assets/screenshot.png" alt="ScholarSpring home page" width="820">
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset=".github/assets/screenshot-dark.png">
+  <img src=".github/assets/screenshot-light.png" alt="ScholarSpring home page: a forest-green hero reading “Funding for the future you’re building.” next to the total of open awards, above cards for scholarships closing soon" width="820">
+</picture>
 
 </div>
 
@@ -45,16 +49,20 @@ and keep a shortlist of the scholarships worth applying to.
 
 ## Features
 
-- **Search.** Find scholarships by name, provider or category as you type.
-- **Filters.** Narrow results by major and region, and enter your GPA to see only awards you qualify for. "Any major" and national awards always show up.
-- **Student account.** Sign up with your email, a username, your GPA, intended major and preferred region. The filters are set from your profile every time you sign in, on any device.
-- **Scholarship details.** Open any card for the full description, award, deadline, minimum GPA and who it's for.
-- **Saved list.** Heart a scholarship to keep it. Your list is stored with your account, so it follows you to any device.
-- **Private by design.** Postgres Row Level Security, not the UI, makes sure each student can only see and change their own profile and saved list.
-- **Responsive.** Works on phones, with a collapsible menu below 800px.
-
-> [!NOTE]
-> ScholarSpring is being rebuilt step by step (see the [roadmap](#roadmap)). The last step is a UI refresh.
+- **Browse and search.** Search by name, provider or category; filter by major, region and your GPA; sort by deadline
+  or award. Filters live in the URL, so a search can be shared and survives a reload.
+- **See what you qualify for.** Signed in, every scholarship that fits your GPA, major and region is marked
+  **Matches your profile**, and its page shows how you match, criterion by criterion.
+- **Deadline cues.** "Closes today", "Closes in 5 days" or "Closed" on every card. Closed scholarships are hidden
+  unless you ask for them.
+- **A page per scholarship.** Award, deadline, eligibility and requirements, with a link you can share.
+- **Saved list.** Heart a scholarship to keep it. If you're signed out, ScholarSpring asks you to sign in and then
+  saves it. Your list is stored with your account and follows you to any device.
+- **Light and dark.** Follows your system setting, with a light / dark / system toggle in the header.
+- **Private by design.** Postgres Row Level Security, not the UI, makes sure each student can only see and change
+  their own profile and saved list.
+- **Accessible and responsive.** Keyboard navigable with a skip link and visible focus, AA contrast in both themes,
+  and works down to 375px wide.
 
 ## Getting started
 
@@ -74,7 +82,8 @@ cp .env.example .env.local   # then fill in your Supabase URL and anon key
 ### 3. Set up the database
 
 In the Supabase dashboard, open **SQL Editor** and run each file in [`supabase/migrations/`](supabase/migrations) in
-order. The first creates the tables, security rules and sign-up trigger; the second adds the six scholarships.
+order. The first creates the tables, security rules and sign-up trigger; the next two add the six demo scholarships
+and move their deadlines into 2027.
 
 <details>
 <summary><strong>Or use the Supabase CLI</strong></summary>
@@ -119,8 +128,8 @@ Open [localhost:5173](http://localhost:5173), or skip the setup and try the [liv
 
 The problems found in the [Round 1 architecture review](docs/CURRENT_ARCHITECTURE.md#problems-we-noticed) are fixed.
 
-- All six seeded scholarships have deadlines between April and August 2026. Add or update scholarships in the
-  Supabase dashboard (**Table Editor → scholarships**) or with a new migration.
+- The six demo scholarships are the only data. Add or update scholarships in the Supabase dashboard
+  (**Table Editor → scholarships**) or with a new migration.
 - Accounts from the old browser-only version aren't carried over; students sign up again. The app deletes that old
   data, which included plain-text passwords, from the browser on first load.
 - There's no "forgot password" flow yet.
@@ -155,7 +164,7 @@ Every pull request and push to `main` runs lint, typecheck, tests and build in [
 2. Add `VITE_SUPABASE_URL` and `VITE_SUPABASE_ANON_KEY` under **Settings → Environment Variables**, for Production
    and Preview.
 3. In Supabase → **Authentication → URL Configuration**, set the Site URL to your production URL.
-4. Deploy.
+4. Deploy. `vercel.json` sends every page route to `index.html`, so links like `/scholarships/stem-forward` work.
 
 Production: **[scholarspring-snowy.vercel.app](https://scholarspring-snowy.vercel.app)**
 
@@ -176,8 +185,8 @@ Each step is its own branch and pull request, merged before the next one starts.
 | 2 | Fix the Round 1 bugs in the existing code | `fix/round-1-bugs` | ✅ Done |
 | 3 | Move to Vite, React, TypeScript, Tailwind, pnpm and Lucide | `chore/vite-react-ts` | ✅ Done |
 | 4 | Deploy to Vercel | `chore/vercel-deploy` | ✅ Done |
-| 5 | Move data and accounts to Supabase | `feat/supabase` | 🚧 In progress |
-| 6 | UI refresh | `feat/ui-refresh` | Planned |
+| 5 | Move data and accounts to Supabase | `feat/supabase` | ✅ Done |
+| 6 | UI refresh: bold forest look, pages, dark mode, match and deadline cues | `feat/ui-refresh` | ✅ Done |
 
 ## Architecture
 
@@ -189,38 +198,39 @@ Each step is its own branch and pull request, merged before the next one starts.
 
 ## Stack
 
-| | Today | After the rollout |
-| --- | --- | --- |
-| **Frontend** | Vite · React · TypeScript (strict) · Tailwind CSS v4 · Lucide icons | Same, with the refreshed UI |
-| **Type** | Playfair Display · DM Sans | Kept, refined in the UI refresh |
-| **Data** | Supabase: Postgres, Auth, Row Level Security, all through `src/lib/data.ts` | Same |
-| **Tooling** | pnpm · oxlint · Vitest · GitHub Actions | Same |
-| **Hosting** | Vercel, with a preview for every PR | Same |
+| | |
+| --- | --- |
+| **Frontend** | Vite · React · React Router · TypeScript (strict) · Tailwind CSS v4 · Lucide icons |
+| **Type** | Playfair Display · DM Sans |
+| **Data** | Supabase: Postgres, Auth, Row Level Security, all through `src/lib/data.ts` |
+| **Tooling** | pnpm · oxlint · Vitest · GitHub Actions |
+| **Hosting** | Vercel, with a preview for every PR |
 
 ## Project structure
 
 ```
 src/
-  App.tsx           page composition, filters, dialogs and toasts
-  components/       Header, Hero, SearchSection, ScholarshipCard, SavedSection,
-                    ProfileDialog, DetailDialog, Modal, Toast, ...
-  hooks/            useAuth, useScholarships, useSavedScholarships, useToast
+  App.tsx           routes and app state (auth, scholarships, saved list, toasts)
+  pages/            Home, Browse, Scholarship, Saved, Profile, NotFound
+  components/       Header, Footer, Layout, ScholarshipCard, Chips, AuthDialog, ThemeToggle, ...
+  context/          AppContext: what every page reads through useApp()
+  hooks/            useAuth, useScholarships, useSavedScholarships, useTheme, useToast, useDocumentTitle
   lib/
     data.ts         the only module that talks to Supabase (auth, profiles, scholarships, saved list)
     supabase.ts     the Supabase client, created from the VITE_ environment variables
     database.types.ts  row types for the tables in supabase/migrations
-    matching.ts     pure, unit-tested filtering and matching
+    matching.ts     filters and per-criterion profile matching
+    browse.ts       Browse URL state, sorting, hiding closed scholarships
+    deadlines.ts    deadline status ("Closes in 5 days")
     format.ts       money and date formatting
-    options.ts      major and region lists
-    fixtures.ts     the seeded scholarships, for tests
-  index.css         Tailwind theme: palette, fonts, breakpoints
-  types.ts          Scholarship, Profile
-supabase/migrations/  schema, Row Level Security, sign-up trigger, seed scholarships
+    theme.ts        light / dark / system preference
+  index.css         Tailwind theme: light and dark colour tokens, fonts, breakpoints
+supabase/migrations/  schema, Row Level Security, sign-up trigger, demo scholarships
 docs/               current and target architecture
-.github/assets/     logo and screenshot used by this README
+.github/assets/     logo and screenshots used by this README
 CLAUDE.md           project guide for contributors and AI assistants
 .env.example        the two Supabase variables the app needs
-vercel.json         Vercel build settings and headers
+vercel.json         Vercel build settings, headers and page-route rewrite
 .github/workflows/  CI: lint, typecheck, test, build
 ```
 
